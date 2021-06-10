@@ -205,3 +205,13 @@ input[type="checkbox"]:checked {
 .checkbox-text{
   margin: 5px 0;
 }
+
+.flex-between{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.box{
+  text-align: center;
+}

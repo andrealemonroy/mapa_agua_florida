@@ -52,14 +52,20 @@ export const Map = () => {
         defaultZoom={5.5}
         defaultCenter={[-10.046374, -77.042793]}
       >
-        {places.map((place) => (
-          <Marker
+        {places.map((place) => {
+          console.log(place)
+          return (
+            <Marker
             key={place._id}
-            text={place.fullName}
+            name={place.artisticName}
+            address={place.location.address}
+            role={place.role}
             lat={place.location.coordinates?.lat}
             lng={place.location.coordinates?.lng}
           />
-        ))}
+          )
+        }
+        )}
       </GoogleMapReact>
       <TableContainer component={Paper}>
         <TextField
