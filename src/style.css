@@ -1,3 +1,11 @@
+
+@font-face {
+  font-family: "DxSitrus-Expanded";
+  src: local("DxSitrus-Expanded"),
+   url("assets/OTF/DxSitrus-Expanded.otf") format("truetype");
+  font-weight: bold;
+  }
+
 *{
   font-family: 'Montserrat';
 }
@@ -214,4 +222,44 @@ input[type="checkbox"]:checked {
 
 .box{
   text-align: center;
+}
+.form-layout{
+  width: 80%;
+}
+
+.form-container{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+
+
+.main-class{
+
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  align-content: center;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.main-title{
+  font-family: 'DxSitrus-Expanded';
+}
+
+.main-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.main-cta{
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+.main-cta Link{
+  width: 45%;
 }

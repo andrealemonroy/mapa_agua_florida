@@ -79,14 +79,15 @@ export const MusiciansForm = () => {
       });
   };
   return (
-    <Formik
+    <Formik 
       // initialValues={formValues || initialValues}
       initialValues={initialValues}
       // validationSchema={validationSchema}
       onSubmit={handleOnSubmit}
       // enableReinitialize
     >
-      <Form>
+      <div className="form-container">
+      <Form className="form-layout">
         <div className='form-control'>
           <label htmlFor='name'>Nombre completo</label>
           <Field type='text' id='name' name='fullName' />
@@ -100,7 +101,7 @@ export const MusiciansForm = () => {
         </div>
         <div className='form-control'>
           <label htmlFor='location'>
-            Distrito / Provincia / Departamento
+            Distrito, Provincia, Departamento
             <Field name='location' component={FormikPlacesAutocomplete} />
           </label>
         </div>
@@ -183,6 +184,8 @@ export const MusiciansForm = () => {
           </button>
         </div>
       </Form>
+      </div>
+     
     </Formik>
   );
 };
