@@ -2,6 +2,7 @@ import React, { useState } from "react";
 // import styled from 'styled-components';
 import { MusiciansForm } from './components/form/index';
 import { Map } from './components/map/index';
+import { MainPage } from './components/mainPage/index';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 const App = () => {
   // return <div className='container'></div>;
@@ -14,8 +15,11 @@ const App = () => {
       <div>
         <nav>
           <ul className={click ? "nav-options active" : "nav-options"}>
+          <li>
+              <Link to='/'>Inicio</Link>
+            </li>
             <li>
-              <Link to='/'>Mapa</Link>
+              <Link to='/mapa'>Mapa</Link>
             </li>
             <li>
               <Link to='/form'>Regístrate</Link>
@@ -29,9 +33,13 @@ const App = () => {
           <Route path='/form'>
             <MusiciansForm />
           </Route>
-          <Route path='/'>
+          <Route path='/mapa'>
             <Map />
           </Route>
+          <Route path='/'>
+            <MainPage />
+          </Route>
+
         </Switch>
       </div>
     </Router>

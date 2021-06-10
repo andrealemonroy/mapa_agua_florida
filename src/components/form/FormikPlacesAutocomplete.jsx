@@ -69,7 +69,7 @@ class FormikPlacesAutoComplete extends Component {
           <div>
             <input
               {...getInputProps({
-                placeholder: 'Tu dirección...',
+                placeholder: 'Ejemplo: Huanchaco, Trujillo, La Libertad',
                 className: 'location-search-input',
               })}
             />
