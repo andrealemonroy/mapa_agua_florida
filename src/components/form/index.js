@@ -100,25 +100,28 @@ export const MusiciansForm = () => {
         </div>
         <div className='form-control'>
           <label htmlFor='location'>
-            Dirección
+            Distrito / Provincia / Departamento
             <Field name='location' component={FormikPlacesAutocomplete} />
           </label>
         </div>
 
         <div className='form-control'>
           <div id='checkbox-group'>Rol</div>
-          <div role='group' aria-labelledby='checkbox-group'>
-            <label>
+          <div role='group' aria-labelledby='checkbox-group' className='role-group'>
+            <label className="container-checkbox">
               <Field type='checkbox' name='role' value='Cantante' />
-              Cantante
+              <p className="checkbox-text">Cantante</p>
+              <span className="checkmark"></span>
             </label>
-            <label>
+            <label className="container-checkbox">
               <Field type='checkbox' name='role' value='Productora' />
-              Productora
+              <p className="checkbox-text">Productora</p>
+              <span className="checkmark"></span>
             </label>
-            <label>
+            <label className="container-checkbox">
               <Field type='checkbox' name='role' value='Compositora' />
-              Compositora
+              <p className="checkbox-text">Compositora</p>
+              <span className="checkmark"></span>
             </label>
           </div>
         </div>
