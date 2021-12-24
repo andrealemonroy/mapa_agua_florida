@@ -1,0 +1,18 @@
+export const roleOptions =[
+    'Cantautora',
+    'Vocalista',
+    'Compositora',
+    'Baterista',
+    'Bajista',
+    'Guitarrista',
+    'Percusionista',
+    'Vientista',
+    'Tecladista',
+    'DJ',
+    'Productora musical',
+    'Educadora musical',
+    'Manager',
+    'Booker',
+    'Estudiante',
+    'Otro',
+];

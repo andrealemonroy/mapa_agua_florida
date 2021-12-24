@@ -13,6 +13,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
+import { musicians } from '../../services/register';
 const Wrapper = styled.main`
   width: 100vw;
   height: 100vh;
@@ -26,9 +27,8 @@ export const Map = () => {
   const fetchPlaces = async () => {
     axios({
       method: 'GET',
-      url: 'https://api.aguaflorida.pe/api/users',
+      url: 'http://localhost:3000/api/users',
     }).then(({ data }) => {
-      console.log(data);
       setPlaces(data.data);
     });
   };
