@@ -4,6 +4,7 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 import { Button } from "../Button/Button";
+import { Input } from "../Input/Input";
 
 const Location = (props) => {
   const [address, setAddress] = useState("");
@@ -11,13 +12,14 @@ const Location = (props) => {
     lat: 0,
     lng: 0,
   };
+
   const handleSelect = (address) => {
     geocodeByAddress(address)
       .then((results) => getLatLng(results[0]))
       .then((latLng) => {
         setAddress(address);
         location = latLng;
-        console.log(location);
+        props.value(location)
       })
       .catch((error) => console.error("Error", error));
   };
@@ -45,9 +47,10 @@ const Location = (props) => {
             <div>
               <input
                 {...getInputProps({
+                  name: "location",
                   placeholder: "¿Dónde te encuentras?",
                   className:
-                    "mt-2 appearance-none block bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white w-72 m-auto sm:w-96",
+                    "mt-2 appearance-none block bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white w-full m-auto sm:w-full",
                 })}
               />
               <div className="autocomplete-dropdown-container">

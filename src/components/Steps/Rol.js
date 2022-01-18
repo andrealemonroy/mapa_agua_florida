@@ -6,11 +6,17 @@ const Rol = (props) => {
   const [checkedState, setCheckedState] = useState(
     new Array(roleOptions.length).fill(false)
   );
-  const handleOnChange = (position) => {
+  const [rol, setRol] = useState([])
+  const handleOnChange = (event, position, rolename) => {
+    const isChecked = event.target.checked;
+    if(isChecked){
+      console.log(rolename)
+      setRol(rolename)
+      props.value(rolename)
+    }
     const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item
     );
-
     setCheckedState(updatedCheckedState);
   };
   return (
@@ -27,11 +33,15 @@ const Rol = (props) => {
               }`}
               key={index}
             >
-              <label htmlFor={`custom-checkbox-${index}`} className="cursor-pointer">
+              <label
+                htmlFor={`custom-checkbox-${index}`}
+                className="cursor-pointer"
+              >
                 <input
                   id={`custom-checkbox-${index}`}
                   type="checkbox"
-                  onChange={() => handleOnChange(index)}
+                  onChange={(event) => handleOnChange(event, index, roleName)}
+                  // onClick={(event) => handleOnChange(event, index, roleName)}
                   checked={checkedState[index]}
                   className="checkbox w-full opacity-0"
                   value={roleName}
