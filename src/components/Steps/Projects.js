@@ -8,20 +8,28 @@ const Projects = (props) => {
   // const [arr, setArr] = useState(inputArr);
   const [inputList, setInputList] = useState([{ projects: "" }]);
   const [projects, setProjects] = useState([]);
-  const final = []
+  const final = [];
   // handle input change
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
     const list = [...inputList];
     list[index][name] = value;
     setInputList(list);
-    projects.push(list)
-    let lengthProjects = projects[projects.length-1].length
-    console.log(lengthProjects)
-    for(let i=0; i<lengthProjects; i++){
-      final.push((Object.values(projects[projects.length-1][i])).toString())
+    projects.push(list);
+    let lengthProjects = projects[projects.length - 1].length;
+    console.log(lengthProjects);
+    for (let i = 0; i < lengthProjects; i++) {
+      final.push(Object.values(projects[projects.length - 1][i]).toString());
     }
-    props.setState({projects: final})
+    if (props.band) {
+      if (props.genre) {
+        props.setState({ genres: final });
+      } else {
+        props.setState({ members: final });
+      }
+    } else {
+      props.setState({ projects: final });
+    }
   };
 
   // handle click event of the Add button
@@ -73,9 +81,9 @@ const Projects = (props) => {
   // );
 
   return (
-    <div className="grid justify-center mt-40">
+    <div className="grid justify-center mt-28">
       <div className="block text-xl font-medium text-gray-700 font-extrabold text-center">
-        ¿Qué proyectos desarrollaste?
+        {props.label}
       </div>
       {inputList.map((x, i) => {
         return (
@@ -87,9 +95,9 @@ const Projects = (props) => {
               onChange={(e) => handleInputChange(e, i)}
               className="mt-2 appearance-none block bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white w-72 m-auto sm:w-full"
             />
-              {inputList.length - 1 === i && (
-                <Button click={handleAddClick} text="Añadir otro proyecto +"></Button>
-              )}
+            {inputList.length - 1 === i && (
+              <Button click={handleAddClick} text={props.addButton}></Button>
+            )}
           </>
         );
       })}

@@ -3,6 +3,7 @@ import { Button } from "../Button/Button";
 
 const Photo = (props) => {
   const [file, setFile] = useState("");
+  const [show, setShow] = useState(false);
   const [base64URL, setBase64URL] = useState();
   // let base64URL = null;
   const [filename, setFilename] = useState("Choose File");
@@ -31,9 +32,8 @@ const Photo = (props) => {
         // Make a fileInfo Object
         baseURL = reader.result;
         console.log("baseurl", baseURL);
-        setBase64URL(baseURL)
+        setBase64URL(baseURL);
         resolve(baseURL);
-        
       };
     });
   };
@@ -44,12 +44,14 @@ const Photo = (props) => {
     getBase64(e.target.files[0])
       .then((result) => {
         file["base64"] = result;
-        console.log("File Is", file);
       })
       .catch((err) => {
         console.log(err);
       });
     setFile(e.target.files[0]);
+    setUploadedFile(e.target.files[0]);
+    console.log(file);
+    setShow(true);
   };
   // const onSubmit = async e => {
   //   e.preventDefault();
@@ -92,7 +94,7 @@ const Photo = (props) => {
     // }
   };
   return (
-    <div className="grid justify-center mt-40">
+    <div className="grid justify-center mt-28">
       <label className="block text-xl font-medium text-gray-700 font-extrabold text-center">
         Agregar tu foto
       </label>
@@ -133,19 +135,12 @@ const Photo = (props) => {
             <p className="text-xs text-gray-500">PNG, JPG, JPEG max 10MB</p>
           </div>
         </div>
+        {show ? <div>Subió el archivo {file.name}</div> : null}
         <div className="flex space-around mt-2 gap-0 sm:gap-2">
           <Button click={props.prevStep} text="Anterior" />
           <Button click={onSubmit} text="Siguiente" />
         </div>
       </form>
-      {uploadedFile ? (
-        <div className="row mt-5">
-          <div className="col-md-6 m-auto">
-            <h3 className="text-center">{uploadedFile.fileName}</h3>
-            <img style={{ width: "100%" }} src={uploadedFile.filePath} alt="" />
-          </div>
-        </div>
-      ) : null}
     </div>
   );
 };

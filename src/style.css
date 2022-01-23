@@ -307,3 +307,15 @@ Style the checkmark/indicator
   display: flex;
   flex-direction: column;
 }
+
+progress::-webkit-progress-bar {
+  background-color: #eeeeee;
+  border-radius: 10px;
+  justify-content: center;
+}
+
+progress::-webkit-progress-value {
+  background-color: #00AB9E !important;
+  border-radius: 10px;
+  justify-content: center;
+}

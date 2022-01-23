@@ -12,7 +12,7 @@ const TermsAndConditions = (props) => {
     props.nextStep();
   };
   return (
-    <div className="grid justify-center mt-40">
+    <div className="grid justify-center mt-28">
       <div className="lg:col-span-6 col-span-12 flex">
         <div className="flex items-center h-5">
           <input

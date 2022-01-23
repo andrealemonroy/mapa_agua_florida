@@ -33,7 +33,7 @@ const Location = (props) => {
     setAddress(address);
   };
   return (
-    <div className="grid justify-center mt-40">
+    <div className="grid justify-center mt-28">
       <label
         htmlFor="location"
         className="block text-xl font-medium text-gray-700 font-extrabold text-center w-72 sm:w-full"
