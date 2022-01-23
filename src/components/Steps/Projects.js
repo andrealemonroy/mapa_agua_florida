@@ -21,7 +21,7 @@ const Projects = (props) => {
     for (let i = 0; i < lengthProjects; i++) {
       final.push(Object.values(projects[projects.length - 1][i]).toString());
     }
-    if (props.band) {
+    if (props.band == "true") {
       if (props.genre) {
         props.setState({ genres: final });
       } else {

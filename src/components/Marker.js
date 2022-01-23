@@ -6,8 +6,8 @@ const Wrapper = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   background-color: #fff;
   border: 2px solid #fff;
   user-select: none;
@@ -16,6 +16,7 @@ const Wrapper = styled.div`
   &:hover {
     z-index: 1;
   }
+  border-radius: 20px;
 `;
 
 const Marker = ({ name, address, role, onClick }) => (
@@ -28,7 +29,7 @@ const Marker = ({ name, address, role, onClick }) => (
       <div>{item}</div>
     ))}
     <br />
-    <div className='flex-between'>
+    <div className='flex'>
       <div>
         <svg
           width='20'
