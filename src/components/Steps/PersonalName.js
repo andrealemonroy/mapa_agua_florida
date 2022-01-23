@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const PersonalName = (props) => {
   return (
     <form onSubmit={props.nextStep} className="grid justify-center mt-28">
-      {props.band ? (
+      {props.band === "true" ? (
         <Input
           label={props.label}
           name="bandsName"
