@@ -6,15 +6,23 @@ const Rol = (props) => {
   const [checkedState, setCheckedState] = useState(
     new Array(roleOptions.length).fill(false)
   );
-  const handleOnChange = (position) => {
+  const [rol, setRol] = useState([]);
+  const handleOnChange = (event, position, rolename) => {
+    const isChecked = event.target.checked;
+    if (isChecked) {
+      console.log(rolename);
+      // setRol(oldArray => [...oldArray, rolename]);
+      rol.push(rolename)
+      // console.log()
+      props.setState({rol: rol})
+    }
     const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item
     );
-
     setCheckedState(updatedCheckedState);
   };
   return (
-    <div className="grid justify-center mt-40">
+    <form onSubmit={props.nextStep} className="grid justify-center mt-40">
       <div className="block text-xl font-medium text-gray-700 font-extrabold text-center">
         ¿Qué rol/es desempeñas?
       </div>
@@ -27,11 +35,15 @@ const Rol = (props) => {
               }`}
               key={index}
             >
-              <label htmlFor={`custom-checkbox-${index}`} className="cursor-pointer">
+              <label
+                htmlFor={`custom-checkbox-${index}`}
+                className="cursor-pointer"
+              >
                 <input
                   id={`custom-checkbox-${index}`}
                   type="checkbox"
-                  onChange={() => handleOnChange(index)}
+                  onChange={(event) => handleOnChange(event, index, roleName)}
+                  // onClick={(event) => handleOnChange(event, index, roleName)}
                   checked={checkedState[index]}
                   className="checkbox w-full opacity-0"
                   value={roleName}
@@ -48,7 +60,7 @@ const Rol = (props) => {
         <Button click={props.prevStep} text="Anterior" />
         <Button click={props.nextStep} text="Siguiente" />
       </div>
-    </div>
+    </form>
   );
 };
 
