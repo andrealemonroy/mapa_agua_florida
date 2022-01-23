@@ -7,14 +7,21 @@ const Projects = (props) => {
 
   // const [arr, setArr] = useState(inputArr);
   const [inputList, setInputList] = useState([{ projects: "" }]);
-
+  const [projects, setProjects] = useState([]);
+  const final = []
   // handle input change
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
     const list = [...inputList];
     list[index][name] = value;
     setInputList(list);
-    props.value(inputList)
+    projects.push(list)
+    let lengthProjects = projects[projects.length-1].length
+    console.log(lengthProjects)
+    for(let i=0; i<lengthProjects; i++){
+      final.push((Object.values(projects[projects.length-1][i])).toString())
+    }
+    props.setState({projects: final})
   };
 
   // handle click event of the Add button

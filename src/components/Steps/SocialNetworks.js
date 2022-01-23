@@ -9,19 +9,42 @@ import { Input } from "../Input/Input";
 
 const SocialNetworks = (props) => {
   const [inputList, setInputList] = useState([]);
-  const handleInputChange = (e, network) => {
-
+  let [facebook, setFacebook] = useState([])
+  let [instagram, setInstagram] = useState([])
+  let [spotify, setSpotify] = useState([])
+  let [youtube, setYoutube] = useState([])
+  const handleInputChangeFacebook = (e) => {
+    facebook = []
     const { name, value } = e.target;
-    console.log(name, value)
-    const list = [...inputList];
-    list[name] = value;
-    console.log(list[name])
-    setInputList(list);
-    console.log(inputList)
-    // props.value(inputList)
+    facebook.push({facebook: value})
+    console.log(facebook[facebook.length-1])
   };
+  const handleInputChangeInsta = (e) => {
+    instagram = []
+    const { name, value } = e.target;
+    instagram.push({instagram: value})
+    console.log(instagram[instagram.length-1])
+  };
+  const handleInputChangeSpotify = (e) => {
+    spotify = []
+    const { name, value } = e.target;
+    spotify.push({spotify: value})
+    console.log(spotify[spotify.length-1])
+  };
+  const handleInputChangeYoutube = (e) => {
+    youtube = []
+    const { name, value } = e.target;
+    youtube.push({youtube: value})
+    console.log(youtube[youtube.length-1])
+  };
+  const sendData = () => {
+    inputList.push(facebook, instagram, spotify, youtube)
+    console.log(inputList)
+    props.setState({socialNetworks: inputList})
+    props.nextStep()
+  }
   return (
-    <div className="grid justify-center mt-40">
+    <form onSubmit={sendData} className="grid justify-center mt-40">
       <label className="block text-xl font-medium text-gray-700 font-extrabold text-center">
         Tus redes sociales
       </label>
@@ -31,7 +54,7 @@ const SocialNetworks = (props) => {
           src={logoFacebook}
           alt="facebook"
         />
-        <input placeholder="Link de Facebook" name="facebook"  onChange={(e) => handleInputChange(e, 'facebook')}/>
+        <Input placeholder="Link de Facebook" name="facebook"  handleInputChange={(e) => handleInputChangeFacebook(e, 'facebook')}/>
       </div>
       <div className="flex space-around gap-0 sm:gap-2 mt-2 align-middle justify-center w-full">
         <img
@@ -39,7 +62,7 @@ const SocialNetworks = (props) => {
           src={logoInstagram}
           alt="instagram"
         />
-        <input placeholder="Link de Instagram" name="instagram" onChange={(e) => handleInputChange(e, 'instagram')}/>
+        <Input placeholder="Link de Instagram" name="instagram" handleInputChange={(e) => handleInputChangeInsta(e, 'instagram')}/>
       </div>
       <div className="flex space-around gap-0 sm:gap-2 mt-2 align-middle justify-center w-full">
         <img
@@ -47,7 +70,7 @@ const SocialNetworks = (props) => {
           src={logoSpotify}
           alt="spotify"
         />
-        <input placeholder="Link de Spotify" name="spotify" onChange={(e) => handleInputChange(e, 'spotify')}/>
+        <Input placeholder="Link de Spotify" name="spotify" handleInputChange={(e) => handleInputChangeSpotify(e, 'spotify')}/>
       </div>
       <div className="flex space-around gap-0 sm:gap-2 mt-2 align-middle justify-center w-full">
         <img
@@ -55,13 +78,13 @@ const SocialNetworks = (props) => {
           src={logoYoutube}
           alt="logoYoutube"
         />
-        <input placeholder="Link de Youtube" name="youtube"  onChange={(e) => handleInputChange(e, 'youtube')}/>
+        <Input placeholder="Link de Youtube" name="youtube"  handleInputChange={(e) => handleInputChangeYoutube(e, 'youtube')}/>
       </div>
       <div className="flex space-around gap-0 sm:gap-2 mt-2">
-        <Button click={props.prevStep} text="Anterior" />
-        <Button click={props.nextStep} text="Siguiente" />
+        <Button  click={props.prevStep} text="Anterior" />
+        <Button click={sendData} text="Siguiente" />
       </div>
-    </div>
+    </form>
   );
 };
 

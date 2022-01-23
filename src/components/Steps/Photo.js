@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../Button/Button";
 const Photo = (props) => {
+  const [name, setName] = useState("");
   let photoSelected;
   const handleFileUpload = (e) => {
     let reader = new FileReader();
@@ -8,8 +9,10 @@ const Photo = (props) => {
     reader.onloadend = () => {
       photoSelected = reader.result;
     };
+
+    // reader.readAsDataURL(photoSelected);
     console.log(photoSelected);
-    reader.readAsDataURL(photoSelected);
+    setName(photoSelected.name);
   };
   return (
     <div className="grid justify-center mt-40">
@@ -51,6 +54,7 @@ const Photo = (props) => {
           <p className="text-xs text-gray-500">PNG, JPG, GIF max 10MB</p>
         </div>
       </div>
+      <div>Archivo  {name} agregado</div>
       <div className="flex space-around gap-0 sm:gap-2 mt-2">
         <Button click={props.prevStep} text="Anterior" />
         <Button click={props.nextStep} text="Finalizar" />

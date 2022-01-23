@@ -3,10 +3,9 @@ import { Button } from "../Button/Button";
 import { Input } from "../Input/Input";
 import { Link } from 'react-router-dom';
 const PersonalName = (props) => {
-
   return (
-    <div className="grid justify-center mt-40">
-      <Input label="¿Cuál es tu nombre?" name="fullName" handleInputChange={props.handleInputChange} value={props.value}/>
+    <form onSubmit={props.nextStep} className="grid justify-center mt-40">
+      <Input label="¿Cuál es tu nombre?" name="fullName" handleInputChange={e => props.setState({fullName: e.target.value})} value={props.state}/>
 
       <div className="flex space-around gap-0 sm:gap-2 mt-2">
         <Link to="/form">
@@ -15,7 +14,7 @@ const PersonalName = (props) => {
 
         <Button click={props.nextStep} text="Siguiente" />
       </div>
-    </div>
+    </form>
   );
 };
 

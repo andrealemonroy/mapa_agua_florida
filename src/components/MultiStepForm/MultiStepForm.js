@@ -19,9 +19,17 @@ const MultiStepForm = () => {
     location: "",
     rol: "",
   });
+  const [state, setState] = React.useReducer((s, a) => ({ ...s, ...a }), {
+    fullName: "",
+    artisticName: "",
+    location: "",
+    rol: "",
+    email: "",
+    projects: "",
+    socialNetworks: "",
+  });
   const [value, setValue] = useState([]);
-  const nextStep = () => {
-    console.log(step);
+  const nextStep = (event) => {
     setStep(step + 1);
   };
   const prevStep = () => {
@@ -67,47 +75,53 @@ const MultiStepForm = () => {
       {step === 1 ? (
         <PersonalName
           nextStep={nextStep}
-          data={data.fullName}
-          handleInputChange={handleInputChange}
-          value={formValues.fullName}
+          state={state.fullName}
+          setState={setState}
         />
       ) : step === 2 ? (
         <ArtisticName
           nextStep={nextStep}
-          data={data.artisticName}
           prevStep={prevStep}
-          handleInputChange={handleInputChange}
-          value={formValues.artisticName}
+          state={state.artisticName}
+          setState={setState}
         />
       ) : step === 3 ? (
         <Location
           nextStep={nextStep}
-          data={data.location}
           prevStep={prevStep}
-          handleInputChange={handleInputChange}
-          value={getLocation}
+          state={state.location}
+          setState={setState}
         />
       ) : step === 4 ? (
         <Rol
           nextStep={nextStep}
           prevStep={prevStep}
-          handleInputChange={handleInputChange}
-          value={setRol}
+          state={state.rol}
+          setState={setState}
         />
       ) : step === 5 ? (
         <Email
           nextStep={nextStep}
           prevStep={prevStep}
-          handleInputChange={handleInputChange}
-          value={formValues.email}
+          state={state.email}
+          setState={setState}
         />
       ) : // case 6:
       // return <Members nextStep={nextStep} prevStep={prevStep} />;
       step === 6 ? (
-        <Projects nextStep={nextStep} prevStep={prevStep}           handleInputChange={handleInputChange}
-        value={setProjects}/>
+        <Projects
+          nextStep={nextStep}
+          prevStep={prevStep}
+          state={state.projects}
+          setState={setState}
+        />
       ) : step === 7 ? (
-        <SocialNetworks nextStep={nextStep} prevStep={prevStep} />
+        <SocialNetworks
+          nextStep={nextStep}
+          prevStep={prevStep}
+          state={state.socialNetworks}
+          setState={setState}
+        />
       ) : step === 8 ? (
         <Photo nextStep={nextStep} prevStep={prevStep} />
       ) : (

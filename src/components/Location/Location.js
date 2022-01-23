@@ -19,7 +19,7 @@ const Location = (props) => {
       .then((latLng) => {
         setAddress(address);
         location = latLng;
-        props.value(location)
+        props.setState({location: location})
       })
       .catch((error) => console.error("Error", error));
   };
