@@ -22,7 +22,7 @@ const Rol = (props) => {
     setCheckedState(updatedCheckedState);
   };
   return (
-    <form onSubmit={props.nextStep} className="grid justify-center mt-40">
+    <form onSubmit={props.nextStep} className="grid justify-center mt-28">
       <div className="block text-xl font-medium text-gray-700 font-extrabold text-center">
         ¿Qué rol/es desempeñas?
       </div>

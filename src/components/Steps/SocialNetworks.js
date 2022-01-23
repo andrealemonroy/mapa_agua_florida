@@ -39,7 +39,7 @@ const SocialNetworks = (props) => {
     props.nextStep()
   }
   return (
-    <form className="grid justify-center mt-40">
+    <form className="grid justify-center mt-28">
       <label className="block text-xl font-medium text-gray-700 font-extrabold text-center">
         Tus redes sociales
       </label>

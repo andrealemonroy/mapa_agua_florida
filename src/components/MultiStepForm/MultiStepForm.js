@@ -11,14 +11,18 @@ import SocialNetworks from "../Steps/SocialNetworks";
 import Photo from "../Steps/Photo";
 import TermsAndConditions from "../Steps/TermsAndConditions";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
+
 axios.defaults.baseURL = `${process.env.API_AGUA_FLORIDA}`;
 const instance = axios.create({
-  baseURL: 'https://api.aguaflorida.pe/api',
-  headers: {'Content-Type': 'application/json'}
+  baseURL: "https://api.aguaflorida.pe/api",
+  headers: { "Content-Type": "application/json" },
 });
 const MultiStepForm = () => {
+  let history = useHistory();
   const arr = [];
   const [step, setStep] = useState(1);
+  const [progress, setProgress] = useState(0);
   const [data, setData] = useState({
     fullName: "",
     artisticName: "",
@@ -39,26 +43,33 @@ const MultiStepForm = () => {
     if (step == 9) {
       console.log(state);
       try {
-        const res = await instance.post('users', state);
+        const res = await instance.post("users", state);
         console.log(res);
+
+        history.push("/");
       } catch (err) {
         console.log(err);
       }
     } else {
       setStep(step + 1);
+      setProgress(progress + 12);
     }
   };
   const prevStep = () => {
     setStep(step - 1);
+    setProgress(progress - 12);
   };
   const [formValues, handleInputChange] = useForm({});
   return (
     <>
+      <progress value={progress} max="100" className="flex m-auto mt-10" />
       {step === 1 ? (
         <PersonalName
+          label="¿Cuál es tu nombre?"
           nextStep={nextStep}
           state={state.fullName}
           setState={setState}
+          band="false"
         />
       ) : step === 2 ? (
         <ArtisticName
@@ -92,10 +103,13 @@ const MultiStepForm = () => {
       // return <Members nextStep={nextStep} prevStep={prevStep} />;
       step === 6 ? (
         <Projects
+          label="¿Qué proyectos desarrollaste?"
+          addButton="Añadir otro proyecto +"
           nextStep={nextStep}
           prevStep={prevStep}
           state={state.projects}
           setState={setState}
+          band="false"
         />
       ) : step === 7 ? (
         <SocialNetworks
