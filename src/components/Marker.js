@@ -29,7 +29,7 @@ const Marker = ({ name, address, role, onClick }) => (
       <div>{item}</div>
     ))}
     <br />
-    <div className='flex-between'>
+    <div className='flex'>
       <div>
         <svg
           width='20'
