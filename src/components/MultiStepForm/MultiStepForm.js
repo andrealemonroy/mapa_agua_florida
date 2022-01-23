@@ -9,7 +9,13 @@ import Members from "../Steps/Members";
 import Projects from "../Steps/Projects";
 import SocialNetworks from "../Steps/SocialNetworks";
 import Photo from "../Steps/Photo";
-
+import TermsAndConditions from "../Steps/TermsAndConditions";
+import axios from "axios";
+axios.defaults.baseURL = `${process.env.API_AGUA_FLORIDA}`;
+const instance = axios.create({
+  baseURL: 'https://api.aguaflorida.pe/api',
+  headers: {'Content-Type': 'application/json'}
+});
 const MultiStepForm = () => {
   const arr = [];
   const [step, setStep] = useState(1);
@@ -23,55 +29,31 @@ const MultiStepForm = () => {
     fullName: "",
     artisticName: "",
     location: "",
-    rol: "",
+    role: "",
     email: "",
     projects: "",
     socialNetworks: "",
+    photo: "",
   });
-  const [value, setValue] = useState([]);
-  const nextStep = (event) => {
-    setStep(step + 1);
+  const nextStep = async () => {
+    if (step == 9) {
+      console.log(state);
+      try {
+        const res = await instance.post('users', state);
+        console.log(res);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      setStep(step + 1);
+    }
   };
   const prevStep = () => {
-    console.log(step);
     setStep(step - 1);
   };
   const [formValues, handleInputChange] = useForm({});
-  const getLocation = (data) => {
-    handleInputChange({
-      target: {
-        name: "location",
-        value: data,
-      },
-    });
-  };
-  const setRol = (data) => {
-    value.push(data);
-    handleInputChange({
-      target: {
-        name: "rol",
-        value: [value],
-      },
-    });
-  };
-
-  const setProjects = (data) => {
-    // value.push(data);
-    handleInputChange({
-      target: {
-        name: "projects",
-        value: [data],
-      },
-    });
-  };
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log(event.target.elements);
-  }
-  console.log(formValues);
   return (
-    <form onSubmit={handleSubmit}>
+    <>
       {step === 1 ? (
         <PersonalName
           nextStep={nextStep}
@@ -123,64 +105,22 @@ const MultiStepForm = () => {
           setState={setState}
         />
       ) : step === 8 ? (
-        <Photo nextStep={nextStep} prevStep={prevStep} />
+        <Photo
+          nextStep={nextStep}
+          prevStep={prevStep}
+          state={state.photo}
+          setState={setState}
+        />
       ) : (
-        console.log("This is a multi-step form built with React.")
-      )}{" "}
-    </form>
+        <TermsAndConditions
+          nextStep={nextStep}
+          prevStep={prevStep}
+          state={state.TermsAndConditions}
+          setState={setState}
+        />
+      )}
+    </>
   );
-  // switch (step) {
-  //   case 1:
-  //     return (
-  //       <PersonalName
-  //         nextStep={nextStep}
-  //         data={data.fullName}
-  //         handleInputChange={handleInputChange}
-  //         value={formValues.fullName}
-  //       />
-  //     );
-  //   case 2:
-  //     return (
-  //       <ArtisticName
-  //         nextStep={nextStep}
-  //         data={data.artisticName}
-  //         prevStep={prevStep}
-  //         handleInputChange={handleInputChange}
-  //         value={formValues.artisticName}
-  //       />
-  //     );
-  //   case 3:
-  //     return (
-  //       <Location
-  //         nextStep={nextStep}
-  //         data={data.location}
-  //         prevStep={prevStep}
-  //         handleInputChange={handleInputChange}
-  //         value={getLocation}
-  //       />
-  //     );
-  //   case 4:
-  //     return (
-  //       <Rol
-  //         nextStep={nextStep}
-  //         prevStep={prevStep}
-  //         handleInputChange={handleInputChange}
-  //         value={setRol}
-  //       />
-  //     );
-  //   case 5:
-  //     return <Email nextStep={nextStep} prevStep={prevStep} />;
-  //   // case 6:
-  //   // return <Members nextStep={nextStep} prevStep={prevStep} />;
-  //   case 6:
-  //     return <Projects nextStep={nextStep} prevStep={prevStep} />;
-  //   case 7:
-  //     return <SocialNetworks nextStep={nextStep} prevStep={prevStep} />;
-  //   case 8:
-  //     return <Photo nextStep={nextStep} prevStep={prevStep} />;
-  //   default:
-  //     console.log("This is a multi-step form built with React.");
-  // }
 };
 
 export default MultiStepForm;

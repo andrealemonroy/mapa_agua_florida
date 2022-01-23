@@ -17,34 +17,29 @@ const SocialNetworks = (props) => {
     facebook = []
     const { name, value } = e.target;
     facebook.push({facebook: value})
-    console.log(facebook[facebook.length-1])
   };
   const handleInputChangeInsta = (e) => {
     instagram = []
     const { name, value } = e.target;
     instagram.push({instagram: value})
-    console.log(instagram[instagram.length-1])
   };
   const handleInputChangeSpotify = (e) => {
     spotify = []
     const { name, value } = e.target;
     spotify.push({spotify: value})
-    console.log(spotify[spotify.length-1])
   };
   const handleInputChangeYoutube = (e) => {
     youtube = []
     const { name, value } = e.target;
     youtube.push({youtube: value})
-    console.log(youtube[youtube.length-1])
   };
   const sendData = () => {
     inputList.push(facebook, instagram, spotify, youtube)
-    console.log(inputList)
     props.setState({socialNetworks: inputList})
     props.nextStep()
   }
   return (
-    <form onSubmit={sendData} className="grid justify-center mt-40">
+    <form className="grid justify-center mt-40">
       <label className="block text-xl font-medium text-gray-700 font-extrabold text-center">
         Tus redes sociales
       </label>

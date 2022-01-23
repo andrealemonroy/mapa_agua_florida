@@ -14,7 +14,7 @@ const Rol = (props) => {
       // setRol(oldArray => [...oldArray, rolename]);
       rol.push(rolename)
       // console.log()
-      props.setState({rol: rol})
+      props.setState({role: rol})
     }
     const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item

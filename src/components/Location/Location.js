@@ -19,7 +19,13 @@ const Location = (props) => {
       .then((latLng) => {
         setAddress(address);
         location = latLng;
-        props.setState({location: location})
+        props.setState({
+          location: {
+            value: address,
+            address: address,
+            coordinates: location,
+          },
+        });
       })
       .catch((error) => console.error("Error", error));
   };
@@ -37,6 +43,7 @@ const Location = (props) => {
           value={address}
           onChange={handleChange}
           onSelect={handleSelect}
+          searchOptions={{componentRestrictions: {country: ['pe']}, types: ['(cities)']}}
         >
           {({
             getInputProps,
