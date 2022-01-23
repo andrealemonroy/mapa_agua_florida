@@ -27,7 +27,7 @@ export const Map = () => {
   const fetchPlaces = async () => {
     axios({
       method: 'GET',
-      url: 'https://api.aguaflorida.pe/api',
+      url: 'https://api.aguaflorida.pe/api/users',
     }).then(({ data }) => {
       setPlaces(data.data);
     });
