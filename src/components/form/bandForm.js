@@ -121,7 +121,7 @@ const BandForm = () => {
         <TermsAndConditions
           nextStep={nextStep}
           prevStep={prevStep}
-          state={state.TermsAndConditions}
+          state={state.termsAndConditions}
           setState={setState}
         />
       )}
