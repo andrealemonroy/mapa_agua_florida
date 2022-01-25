@@ -7,7 +7,6 @@ const TermsAndConditions = (props) => {
     setTermsAndConditions(e.target.checked);
   };
   const onSubmit = async () => {
-    console.log(termsAndConditions);
     props.setState({ termsAndConditions: termsAndConditions });
     props.nextStep();
   };

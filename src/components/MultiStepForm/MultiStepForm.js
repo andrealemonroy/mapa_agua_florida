@@ -15,7 +15,7 @@ import { useHistory } from "react-router-dom";
 
 axios.defaults.baseURL = `${process.env.API_AGUA_FLORIDA}`;
 const instance = axios.create({
-  baseURL: "https://api.aguaflorida.pe/api",
+  baseURL: 'https://api.aguaflorida.pe/api',
   headers: { "Content-Type": "application/json" },
 });
 const MultiStepForm = () => {
@@ -38,6 +38,7 @@ const MultiStepForm = () => {
     projects: "",
     socialNetworks: "",
     photo: "",
+    termsAndConditions: false
   });
   const nextStep = async () => {
     if (step == 9) {
@@ -129,7 +130,7 @@ const MultiStepForm = () => {
         <TermsAndConditions
           nextStep={nextStep}
           prevStep={prevStep}
-          state={state.TermsAndConditions}
+          state={state.termsAndConditions}
           setState={setState}
         />
       )}
