@@ -40,14 +40,20 @@ const MultiStepForm = () => {
     photo: "",
     termsAndConditions: false
   });
+  const [message, setMessage] = useState('');
   const nextStep = async () => {
     if (step == 9) {
       console.log(state);
       try {
         const res = await instance.post("users", state);
         console.log(res);
+        setMessage('¡Gracias por registrarte!');
+        setTimeout(()=>{
+          history.push("/");
+        } ,3000 );
 
-        history.push("/");
+
+       
       } catch (err) {
         console.log(err);
       }
@@ -134,6 +140,7 @@ const MultiStepForm = () => {
           setState={setState}
         />
       )}
+      <p className="justify-center flex">{message}</p>
     </>
   );
 };
