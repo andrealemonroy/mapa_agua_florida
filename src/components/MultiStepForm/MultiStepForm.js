@@ -18,7 +18,7 @@ const instance = axios.create({
   baseURL: 'https://api.aguaflorida.pe/api',
   headers: { "Content-Type": "application/json" },
 });
-const MultiStepForm = () => {
+const MultiStepForm = () => { 
   let history = useHistory();
   const arr = [];
   const [step, setStep] = useState(1);
