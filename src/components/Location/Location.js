@@ -8,12 +8,14 @@ import { Input } from "../Input/Input";
 
 const Location = (props) => {
   const [address, setAddress] = useState("");
+  const [disabled, setDisabled] = useState(true)
   let location = {
     lat: 0,
     lng: 0,
   };
 
   const handleSelect = (address) => {
+    setDisabled(false)
     geocodeByAddress(address)
       .then((results) => getLatLng(results[0]))
       .then((latLng) => {
@@ -66,7 +68,6 @@ const Location = (props) => {
                   const className = suggestion.active
                     ? "suggestion-item--active"
                     : "suggestion-item";
-                  // inline style for demonstration purpose
                   const style = suggestion.active
                     ? { backgroundColor: "#fafafa", cursor: "pointer" }
                     : { backgroundColor: "#ffffff", cursor: "pointer" };
@@ -88,7 +89,7 @@ const Location = (props) => {
       </label>
       <div className="flex space-around gap-0 sm:gap-2">
         <Button click={props.prevStep} text="Anterior" />
-        <Button click={props.nextStep} text="Siguiente" />
+        <Button disabled={disabled} click={props.nextStep} text="Siguiente" />
       </div>
     </div>
   );

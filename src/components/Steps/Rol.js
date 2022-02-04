@@ -6,15 +6,19 @@ const Rol = (props) => {
   const [checkedState, setCheckedState] = useState(
     new Array(roleOptions.length).fill(false)
   );
+  const[disabled, setDisabled] = useState(true)
   const [rol, setRol] = useState([]);
   const handleOnChange = (event, position, rolename) => {
     const isChecked = event.target.checked;
     if (isChecked) {
-      console.log(rolename);
-      // setRol(oldArray => [...oldArray, rolename]);
-      rol.push(rolename)
-      // console.log()
-      props.setState({role: rol})
+      rol.push(event.target.value);
+      props.setState({ role: rol });
+    } else {
+      const filtered = rol.filter(item => item !== event.target.value)
+      setRol(filtered)
+    }
+    if(rol !== []){
+      setDisabled(false)
     }
     const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item
@@ -22,7 +26,7 @@ const Rol = (props) => {
     setCheckedState(updatedCheckedState);
   };
   return (
-    <form onSubmit={props.nextStep} className="grid justify-center mt-28">
+    <div className="grid justify-center mt-28">
       <div className="block text-xl font-medium text-gray-700 font-extrabold text-center">
         ¿Qué rol/es desempeñas?
       </div>
@@ -58,9 +62,9 @@ const Rol = (props) => {
 
       <div className="flex space-around mt-2 gap-0 sm:gap-2">
         <Button click={props.prevStep} text="Anterior" />
-        <Button click={props.nextStep} text="Siguiente" />
+        <Button disabled={disabled} click={props.nextStep} text="Siguiente" />
       </div>
-    </form>
+    </div>
   );
 };
 
