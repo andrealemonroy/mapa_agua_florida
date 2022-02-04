@@ -6,7 +6,7 @@ const Photo = (props) => {
   const [show, setShow] = useState(false);
   const [base64URL, setBase64URL] = useState();
   const [value, setValue] = useState("");
-  const [disabled, setDisabled] = useState(true);
+  const [disabled, setDisabled] = useState(false);
   // let base64URL = null;
   const [filename, setFilename] = useState("Choose File");
   const [uploadedFile, setUploadedFile] = useState({});
@@ -32,6 +32,7 @@ const Photo = (props) => {
   };
   const handleFileInputChange = (e) => {
     console.log(e.target.files[0].size);
+    debugger;
     if (e.target.files[0].size > 1000000) {
       setValue("La foto no puede superar 1MB de tamaño");
       setDisabled(true);
