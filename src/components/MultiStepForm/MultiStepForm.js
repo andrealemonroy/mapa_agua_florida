@@ -58,6 +58,7 @@ const MultiStepForm = () => {
         console.log(err);
       }
     } else {
+      console.log(step)
       setStep(step + 1);
       setProgress(progress + 12);
     }
@@ -73,13 +74,15 @@ const MultiStepForm = () => {
       {step === 1 ? (
         <PersonalName
           label="¿Cuál es tu nombre?"
+          name="fullName"
           nextStep={nextStep}
           state={state.fullName}
           setState={setState}
-          band="false"
         />
       ) : step === 2 ? (
-        <ArtisticName
+        <PersonalName
+          label="¿Cuál es tu nombre artístico?"
+          name="artisticName"
           nextStep={nextStep}
           prevStep={prevStep}
           state={state.artisticName}
