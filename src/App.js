@@ -6,7 +6,6 @@ import { MainPage } from "./components/mainPage/index";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import logo from "./assets/SVG/logo.svg";
 import Example from "./components/nav/nav";
-import PersonalForm from "./components/form/personalForm";
 import BandForm from "./components/form/bandForm";
 import TermsAndConditions from "./components/termsAndConditions";
 import MultiStepForm from "./components/MultiStepForm/MultiStepForm";
