@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Location from "../Location/Location";
 import PersonalName from "../Steps/PersonalName";
 import { useForm } from "../../hooks/useForm";
-import ArtisticName from "../Steps/ArtisticName";
 import Rol from "../Steps/Rol";
 import Email from "../Steps/Email";
 import Members from "../Steps/Members";
