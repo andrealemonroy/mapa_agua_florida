@@ -14,10 +14,10 @@ import { useHistory } from "react-router-dom";
 
 axios.defaults.baseURL = `${process.env.API_AGUA_FLORIDA}`;
 const instance = axios.create({
-  baseURL: 'https://api.aguaflorida.pe/api',
+  baseURL: "https://api.aguaflorida.pe/api",
   headers: { "Content-Type": "application/json" },
 });
-const MultiStepForm = () => { 
+const MultiStepForm = () => {
   let history = useHistory();
   const arr = [];
   const [step, setStep] = useState(1);
@@ -37,27 +37,24 @@ const MultiStepForm = () => {
     projects: "",
     socialNetworks: "",
     photo: "",
-    termsAndConditions: false
+    termsAndConditions: false,
   });
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const nextStep = async () => {
     if (step == 9) {
       console.log(state);
       try {
         const res = await instance.post("users", state);
         console.log(res);
-        setMessage('¡Gracias por registrarte!');
-        setTimeout(()=>{
+        setMessage("¡Gracias por registrarte!");
+        setTimeout(() => {
           history.push("/");
-        } ,3000 );
-
-
-       
+        }, 3000);
       } catch (err) {
         console.log(err);
       }
     } else {
-      console.log(step)
+      console.log(step);
       setStep(step + 1);
       setProgress(progress + 12);
     }
@@ -102,14 +99,15 @@ const MultiStepForm = () => {
           setState={setState}
         />
       ) : step === 5 ? (
-        <Email
+        <PersonalName
+          label="¿Cuál es tu correo?"
+          name="email"
           nextStep={nextStep}
           prevStep={prevStep}
           state={state.email}
           setState={setState}
         />
-      ) : // case 6:
-      // return <Members nextStep={nextStep} prevStep={prevStep} />;
+      ) : 
       step === 6 ? (
         <Projects
           label="¿Qué proyectos desarrollaste?"

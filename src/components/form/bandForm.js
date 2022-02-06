@@ -14,14 +14,14 @@ import { useHistory } from "react-router-dom";
 
 axios.defaults.baseURL = `${process.env.API_AGUA_FLORIDA}`;
 const instance = axios.create({
-  baseURL: 'https://api.aguaflorida.pe/api',
-  headers: {'Content-Type': 'application/json'}
+  baseURL: "https://api.aguaflorida.pe/api",
+  headers: { "Content-Type": "application/json" },
 });
 const BandForm = () => {
-  let history = useHistory()
+  let history = useHistory();
   const arr = [];
   const [step, setStep] = useState(1);
-  const [progress, setProgress] = useState(0)
+  const [progress, setProgress] = useState(0);
 
   const [state, setState] = React.useReducer((s, a) => ({ ...s, ...a }), {
     bandsName: "",
@@ -33,41 +33,39 @@ const BandForm = () => {
     photo: "",
     termsAndConditions: false,
   });
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const nextStep = async () => {
-    if (step == 9) {
+    if (step == 8) {
       console.log(state);
       try {
-        const res = await instance.post('bands', state);
+        const res = await instance.post("bands", state);
         console.log(res);
-        setMessage('¡Gracias por registrarte!');
-        setTimeout(()=>{
+        setMessage("¡Gracias por registrarte!");
+        setTimeout(() => {
           history.push("/");
-        } ,3000 );
-        
+        }, 3000);
       } catch (err) {
         console.log(err);
       }
     } else {
       setStep(step + 1);
-      setProgress(progress + 12)
+      setProgress(progress + 12);
     }
   };
   const prevStep = () => {
     setStep(step - 1);
-    setProgress(progress - 12)
+    setProgress(progress - 12);
   };
-  const [formValues, handleInputChange] = useForm({});
   return (
     <>
-    <progress value={progress} max="100" className="flex m-auto mt-10"/>
+      <progress value={progress} max="100" className="flex m-auto mt-10" />
       {step === 1 ? (
         <PersonalName
           label="¿Cuál es el nombre del proyecto musical?"
+          name="bandsName"
           nextStep={nextStep}
           state={state.bandsName}
           setState={setState}
-          band="true"
         />
       ) : step === 2 ? (
         <Location
@@ -87,7 +85,9 @@ const BandForm = () => {
           band="true"
         />
       ) : step === 4 ? (
-        <Email
+        <PersonalName
+          label="¿Cuál es tu correo?"
+          name="email"
           nextStep={nextStep}
           prevStep={prevStep}
           state={state.email}
@@ -128,7 +128,7 @@ const BandForm = () => {
           setState={setState}
         />
       )}
-       <p className="justify-center flex">{message}</p>
+      <p className="justify-center flex">{message}</p>
     </>
   );
 };

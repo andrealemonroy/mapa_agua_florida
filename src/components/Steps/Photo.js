@@ -5,21 +5,14 @@ const Photo = (props) => {
   const [file, setFile] = useState("");
   const [show, setShow] = useState(false);
   const [base64URL, setBase64URL] = useState();
+  const [value, setValue] = useState("");
+  const [disabled, setDisabled] = useState(false);
   // let base64URL = null;
   const [filename, setFilename] = useState("Choose File");
   const [uploadedFile, setUploadedFile] = useState({});
-  const [message, setMessage] = useState("");
-  const [uploadPercentage, setUploadPercentage] = useState(0);
-  const [name, setName] = useState("");
 
-  let photoSelected;
-  const handleFileUpload = (e) => {
-    setFile(e.target.files[0]);
-    setFilename(e.target.files[0].name);
-  };
   const getBase64 = (file) => {
     return new Promise((resolve) => {
-      let fileInfo;
       let baseURL = "";
       // Make new FileReader
       let reader = new FileReader();
@@ -38,60 +31,33 @@ const Photo = (props) => {
     });
   };
   const handleFileInputChange = (e) => {
-    console.log(e.target.files[0]);
-    setFile(e.target.files[0]);
+    console.log(e.target.files[0].size);
+    debugger;
+    if (e.target.files[0].size > 1000000) {
+      setValue("La foto no puede superar 1MB de tamaño");
+      setDisabled(true);
+    } else {
+      setValue("");
+      setDisabled(false);
+      setFile(e.target.files[0]);
 
-    getBase64(e.target.files[0])
-      .then((result) => {
-        file["base64"] = result;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    setFile(e.target.files[0]);
-    setUploadedFile(e.target.files[0]);
-    console.log(file);
-    setShow(true);
+      getBase64(e.target.files[0])
+        .then((result) => {
+          file["base64"] = result;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      setFile(e.target.files[0]);
+      setUploadedFile(e.target.files[0]);
+      setShow(true);
+    }
   };
-  // const onSubmit = async e => {
-  //   e.preventDefault();
-  //   const formData = new FormData();
-  //   formData.append('file', file);
-  // };
+
   const onSubmit = async () => {
     console.log(base64URL);
     props.setState({ photo: base64URL });
     props.nextStep();
-    // try {
-    //   const res = await axios.post('/upload', formData, {
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data'
-    //     },
-    //     onUploadProgress: progressEvent => {
-    //       setUploadPercentage(
-    //         parseInt(
-    //           Math.round((progressEvent.loaded * 100) / progressEvent.total)
-    //         )
-    //       );
-    //     }
-    //   });
-
-    //   // Clear percentage
-    //   setTimeout(() => setUploadPercentage(0), 10000);
-
-    //   const { fileName, filePath } = res.data;
-
-    //   setUploadedFile({ fileName, filePath });
-
-    //   setMessage('File Uploaded');
-    // } catch (err) {
-    //   if (err.response.status === 500) {
-    //     setMessage('There was a problem with the server');
-    //   } else {
-    //     setMessage(err.response.data.msg);
-    //   }
-    //   setUploadPercentage(0)
-    // }
   };
   return (
     <div className="grid justify-center mt-28">
@@ -132,13 +98,20 @@ const Photo = (props) => {
               </label>
               <p className="pl-1">o arrastrálo aquí</p>
             </div>
-            <p className="text-xs text-gray-500">PNG, JPG, JPEG max 10MB</p>
+            <p className="text-xs text-gray-500">PNG, JPG, JPEG max 1MB</p>
           </div>
         </div>
         {show ? <div>Subió el archivo {file.name}</div> : null}
+        {value !== "" ? (
+          <div>
+            <p className="text-red-600">{value}</p>
+          </div>
+        ) : (
+          <div></div>
+        )}
         <div className="flex space-around mt-2 gap-0 sm:gap-2">
           <Button click={props.prevStep} text="Anterior" />
-          <Button click={onSubmit} text="Siguiente" />
+          <Button disabled={disabled} click={onSubmit} text="Siguiente" />
         </div>
       </form>
     </div>

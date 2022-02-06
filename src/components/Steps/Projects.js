@@ -3,11 +3,10 @@ import { Button } from "../Button/Button";
 import { Input } from "../Input/Input";
 
 const Projects = (props) => {
-  // const inputArr = [];
-
-  // const [arr, setArr] = useState(inputArr);
   const [inputList, setInputList] = useState([{ projects: "" }]);
   const [projects, setProjects] = useState([]);
+  const [value, setValue] = useState("");
+  const [disabled, setDisabled] = useState(true);
   const final = [];
   // handle input change
   const handleInputChange = (e, index) => {
@@ -17,18 +16,26 @@ const Projects = (props) => {
     setInputList(list);
     projects.push(list);
     let lengthProjects = projects[projects.length - 1].length;
-    console.log(lengthProjects);
     for (let i = 0; i < lengthProjects; i++) {
       final.push(Object.values(projects[projects.length - 1][i]).toString());
     }
-    if (props.band == "true") {
-      if (props.genre) {
-        props.setState({ genres: final });
+    const newArr = final.filter((item) => item !== "");
+    console.log(newArr.length);
+    if (newArr.length > 0) {
+      setValue("");
+      setDisabled(false);
+      if (props.band == "true") {
+        if (props.genre) {
+          props.setState({ genres: final });
+        } else {
+          props.setState({ members: final });
+        }
       } else {
-        props.setState({ members: final });
+        props.setState({ projects: final });
       }
     } else {
-      props.setState({ projects: final });
+      setValue("Este campo es obligatorio");
+      setDisabled(true);
     }
   };
 
@@ -36,49 +43,6 @@ const Projects = (props) => {
   const handleAddClick = () => {
     setInputList([...inputList, { projects: "" }]);
   };
-  // const addInput = () => {
-  //   setArr((s) => {
-  //     console.log(s)
-  //     return [...s];
-  //   });
-  // };
-
-  // const handleChange = (e, id) => {
-  //   console.log(e);
-  //   e.preventDefault();
-  //   const index = id;
-  //   setArr((s) => {
-  //     console.log(s);
-  //     const newArr = s.slice();
-  //     newArr[index].value = e.target.value;
-  //     console.log(newArr);
-  //     // props.value(newArr);
-  //     return newArr;
-  //   });
-  // };
-
-  // return (
-  //   <div className="grid justify-center mt-40">
-  //     <Input
-  //       label="¿Qué proyectos desarrollaste?"
-  //       name="projects"
-  //       handleInputChange={(event) => handleChange(event, 1)}
-  //     />
-  //     {arr.map((item, i) => {
-  //       return (
-  //         <Input
-  //           handleInputChange={(event) => handleChange(event)}
-  //           value={item.value}
-  //           id={i}
-  //           type={item.type}
-  //           size="40"
-  //         />
-  //       );
-  //     })}
-  //     <Button click={addInput} text="Añadir otro proyecto +" />
-
-  //   </div>
-  // );
 
   return (
     <div className="grid justify-center mt-28">
@@ -101,10 +65,16 @@ const Projects = (props) => {
           </>
         );
       })}
-      {/* <div style={{ marginTop: 20 }}>{JSON.stringify(inputList)}</div> */}
+      {value !== "" ? (
+        <div>
+          <p className="text-red-600">{value}</p>
+        </div>
+      ) : (
+        <div></div>
+      )}
       <div className="flex space-around gap-0 sm:gap-2 mt-2">
         <Button click={props.prevStep} text="Anterior" />
-        <Button click={props.nextStep} text="Siguiente" />
+        <Button disabled={disabled} click={props.nextStep} text="Siguiente" />
       </div>
     </div>
   );

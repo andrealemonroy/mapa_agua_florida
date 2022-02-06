@@ -3,19 +3,36 @@ import { Button } from "../Button/Button";
 import { Input } from "../Input/Input";
 import { Link } from "react-router-dom";
 const PersonalName = (props) => {
-  debugger;
   const [value, setValue] = useState("");
   const [disabled, setDisabled] = useState(true);
+
   const handleInputChange = (e) => {
     if (e.target.value === "") {
       setValue("Este campo es obligatorio");
       setDisabled(true);
-    } else {
+    } else if(props.name === 'email') {
+      const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/
+      if(regex.test(e.target.value)){
+        setValue("");
+        setDisabled(false)
+      } else{
+        setValue("Por favor, ingresa un correo válido");
+        setDisabled(true)
+      }
+    }
+    else {
       setValue("");
       setDisabled(false);
     }
     props.setState({ [props.name]: e.target.value });
   };
+
+  const nextStep = () => {
+    setValue("");
+    setDisabled(true);
+    props.nextStep();
+  };
+  
   return (
     <div className="grid justify-center mt-28">
       {
@@ -34,10 +51,14 @@ const PersonalName = (props) => {
         <div></div>
       )}
       <div className="flex space-around gap-0 sm:gap-2 mt-2">
-        <Link to="/form">
-          {props.name === 'fullName' || props.name === 'bandsName' ? <Button text="Volver" /> : <Button click={props.prevStep} text="Anterior"/>}
-        </Link>
-        <Button disabled={disabled} click={props.nextStep} text="Siguiente" />
+        {props.name === "fullName" || props.name === "bandsName" ? (
+          <Link to="/form">
+            <Button text="Volver" />
+          </Link>
+        ) : (
+          <Button click={props.prevStep} text="Anterior" />
+        )}
+        <Button disabled={disabled} click={nextStep} text="Siguiente" />
       </div>
     </div>
   );
