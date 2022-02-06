@@ -16,20 +16,42 @@ import TextField from '@material-ui/core/TextField';
 import { musicians } from '../../services/register';
 const Wrapper = styled.main`
   width: 100vw;
+  height: 88vh;
+  display: flex;
+`;
+
+const DotMarker = styled.div`
+width: 25px;
+height: 25px;
+background-color: #EA8644ff;
+border-radius: 15px;
+&:hover {
+  cursor: pointer;
+  background-color: #64599Eff;
+}
+`;
+let isPlaces = true;
+const MusiciansContainer = styled.section`
+  width: 100vw;
+  display: ${isPlaces ? 'none' : 'inherit'};
   height: 100vh;
   display: flex;
 `;
 
 export const Map = () => {
   //   return <p>Mapa</p>;
-  const [places, setPlaces] = useState([]);
+  const [places, setPlaces] = useState({});
+  const [musician, setMusician] = useState([]);
   const [name, setName] = React.useState('');
   const fetchPlaces = async () => {
     axios({
       method: 'GET',
-      url: 'https://api.aguaflorida.pe/api/users',
+      url: 'https://api.aguaflorida.pe/api/total',
     }).then(({ data }) => {
-      setPlaces(data.data);
+      const newData = data.total;
+      setPlaces(newData);
+      console.log(newData);
+
     });
   };
 
@@ -37,11 +59,36 @@ export const Map = () => {
     setName(event.target.value);
   };
 
+  const getMusiciansByLatLng = async(place)=>{
+
+    axios({
+      method: 'GET',
+      url: `https://api.aguaflorida.pe/api/users/${place._id}`,
+    }).then(({ data }) => {
+      setMusician(data.data);
+      if (!musician || musician.length === 0) {
+         isPlaces = false;
+       }
+       const location = musician.location;
+       axios.post(`https://api.aguaflorida.pe/api/users/location`, { location })
+       .then(res => {
+         console.log(res);
+         console.log(res.data);
+
+       })
+
+    });
+    
+
+  }
+
   useEffect(() => {
     fetchPlaces();
   }, []);
 
   if (!places || places.length === 0) {
+   // isPlaces = false;
+   console.log('hola')
     return null;
   }
 
@@ -52,53 +99,41 @@ export const Map = () => {
         defaultZoom={5.5}
         defaultCenter={[-10.046374, -77.042793]}
       >
-        {places.map((place) => {
+        {/* {places.map((place) => {
+
+              place.map((type) => {
+                console.log(type)
+                return (
+
+                
+                <DotMarker 
+                  key={type._id}  
+                  lat={type.location.coordinates?.lat}
+                  lng={type.location.coordinates?.lng}
+                //  onClick={getMusiciansByLatLng(place)} 
+                >
+                </DotMarker>
+                
+
+                
+                )
+              }
+              )
           console.log(place)
-          return (
-            <Marker
-            key={place._id}
-            name={place.artisticName}
-            address={place.location.address}
-            role={place.role}
-            lat={place.location.coordinates?.lat}
-            lng={place.location.coordinates?.lng}
-          />
-          )
         }
-        )}
+        )} */}
+        {
+                places.map((r) => ( 
+                 
+                      r.map((type) =>  
+                      {
+                        console.log(type)
+                      })
+                     
+                  ))
+        }
       </GoogleMapReact>
-      <TableContainer component={Paper}>
-        <TextField
-          id='standard-name'
-          label='Name'
-          value={name}
-          onChange={handleChange}
-        />
-        <Table aria-label='simple table'>
-          {/* <TableHead>
-          <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
-          </TableRow>
-        </TableHead> */}
-          <TableBody>
-            {places.map((row) => (
-              <TableRow key={row.fullName}>
-                <TableCell component='th' scope='row'>
-                  {row.fullName}
-                </TableCell>
-                {/* <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell> */}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+
     </Wrapper>
   );
 };
