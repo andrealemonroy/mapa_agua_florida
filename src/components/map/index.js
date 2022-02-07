@@ -111,7 +111,7 @@ export const Map = () => {
         {users.length > 0 ? (
           users.map((user) => {
             return (
-              <div class="bg-white py-8 px-10 text-center rounded-md shadow-lg transform max-w-xs mx-auto my-2 border-2">
+              <div class="bg-white py-8 px-10 text-center rounded-md shadow-lg transform max-w-xs mx-auto my-2 border-2 w-72">
                 <h2 class="font-semibold text-2xl mb-6">{user.fullName}</h2>
                 <img
                   class="w-20 h-20 object-cover rounded-full mx-auto shadow-lg"
@@ -119,6 +119,13 @@ export const Map = () => {
                   alt="User avatar"
                 />
                 <p class="capitalize text-xl mt-1">{user.genres}</p>
+                <span class="flex items-center border rounded-full w-24 pr-2 justify-center mx-auto mt-2 mb-12">
+                  <div class="bg-green-400 rounded-full w-2.5 h-2.5 block mr-2"></div>
+                  Nombre
+                </span>
+                <button class="rounded-md bg-gradient-to-r from-blue-400 to-indigo-500 text-xl text-white pt-3 pb-4 px-8 inline">
+                  Redes
+                </button>
               </div>
             );
           })
@@ -128,7 +135,7 @@ export const Map = () => {
         {bands.length > 0 ? (
           bands.map((band) => {
             return (
-              <div class="bg-white py-8 px-10 text-center rounded-md shadow-lg transform  max-w-xs mx-auto my-2 border-2">
+              <div class="bg-white py-8 px-10 text-center rounded-md shadow-lg transform  max-w-xs mx-auto my-2 border-2 w-72">
                 <h2 class="font-semibold text-2xl mb-6">{band.bandsName}</h2>
                 <img
                   class="w-20 h-20 object-cover rounded-full mx-auto shadow-lg"
@@ -138,10 +145,10 @@ export const Map = () => {
                 <p class="capitalize text-xl mt-1">{band.genres}</p>
                 <span class="flex items-center border rounded-full w-24 pr-2 justify-center mx-auto mt-2 mb-12">
                   <div class="bg-green-400 rounded-full w-2.5 h-2.5 block mr-2"></div>
-                  Active
+                  Nombre
                 </span>
                 <button class="rounded-md bg-gradient-to-r from-blue-400 to-indigo-500 text-xl text-white pt-3 pb-4 px-8 inline">
-                  Send a message
+                  Redes
                 </button>
               </div>
             );
