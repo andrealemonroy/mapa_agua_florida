@@ -15,22 +15,22 @@ const SocialNetworks = (props) => {
   let [youtube, setYoutube] = useState([])
   const handleInputChangeFacebook = (e) => {
     facebook = []
-    const { name, value } = e.target;
+    const { value } = e.target;
     facebook.push({facebook: value})
   };
   const handleInputChangeInsta = (e) => {
     instagram = []
-    const { name, value } = e.target;
+    const { value } = e.target;
     instagram.push({instagram: value})
   };
   const handleInputChangeSpotify = (e) => {
     spotify = []
-    const { name, value } = e.target;
+    const { value } = e.target;
     spotify.push({spotify: value})
   };
   const handleInputChangeYoutube = (e) => {
     youtube = []
-    const { name, value } = e.target;
+    const { value } = e.target;
     youtube.push({youtube: value})
   };
   const sendData = () => {

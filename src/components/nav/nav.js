@@ -1,9 +1,9 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
+import { Disclosure } from "@headlessui/react";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../../assets/SVG/logo.svg";
+import logo from "../../assets/SVG/LOGO_MM.svg";
 const navigation = [
   { name: "Inicio", to: "/", current: true },
   { name: "Mapa", to: "/map", current: false },
@@ -16,7 +16,7 @@ function classNames(...classes) {
 export default function Example(props) {
   let location = useLocation();
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-primary">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">

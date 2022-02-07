@@ -11,6 +11,7 @@ const PersonalName = (props) => {
       setValue("Este campo es obligatorio");
       setDisabled(true);
     } else if(props.name === 'email') {
+      // eslint-disable-next-line no-useless-escape
       const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/
       if(regex.test(e.target.value)){
         setValue("");

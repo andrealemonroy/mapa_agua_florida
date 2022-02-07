@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import Location from "../Location/Location";
 import PersonalName from "../Steps/PersonalName";
-import { useForm } from "../../hooks/useForm";
-import Rol from "../Steps/Rol";
-import Email from "../Steps/Email";
-import Members from "../Steps/Members";
 import Projects from "../Steps/Projects";
 import SocialNetworks from "../Steps/SocialNetworks";
 import Photo from "../Steps/Photo";

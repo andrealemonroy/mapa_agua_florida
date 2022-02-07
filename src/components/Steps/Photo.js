@@ -7,8 +7,6 @@ const Photo = (props) => {
   const [base64URL, setBase64URL] = useState();
   const [value, setValue] = useState("");
   const [disabled, setDisabled] = useState(false);
-  // let base64URL = null;
-  const [filename, setFilename] = useState("Choose File");
   const [uploadedFile, setUploadedFile] = useState({});
 
   const getBase64 = (file) => {

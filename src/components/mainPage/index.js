@@ -1,7 +1,4 @@
-import React, { useState, useEffect } from 'react';
-
-// import 'google-map-react/dist/index.css'
-import styled from 'styled-components';
+import React from 'react';
 import { MainBanner } from '../mainBanner/index';
 
 

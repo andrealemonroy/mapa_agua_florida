@@ -1,7 +1,4 @@
-import React, { useState, useEffect } from 'react';
-// import '../assets/OTF/DxSitrus-Expanded.otf';
-// import 'google-map-react/dist/index.css'
-import styled from 'styled-components';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 

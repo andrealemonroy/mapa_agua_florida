@@ -1,11 +1,6 @@
 import React from "react";
-import { useForm } from "../../hooks/useForm";
 
 export const Input = (props) => {
-  const label = props.label;
-
-  // const { value } = formValues;
-
   return (
     <div className="w-full">
       <label

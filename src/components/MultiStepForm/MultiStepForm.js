@@ -3,8 +3,6 @@ import Location from "../Location/Location";
 import PersonalName from "../Steps/PersonalName";
 import { useForm } from "../../hooks/useForm";
 import Rol from "../Steps/Rol";
-import Email from "../Steps/Email";
-import Members from "../Steps/Members";
 import Projects from "../Steps/Projects";
 import SocialNetworks from "../Steps/SocialNetworks";
 import Photo from "../Steps/Photo";
@@ -19,15 +17,8 @@ const instance = axios.create({
 });
 const MultiStepForm = () => {
   let history = useHistory();
-  const arr = [];
   const [step, setStep] = useState(1);
   const [progress, setProgress] = useState(0);
-  const [data, setData] = useState({
-    fullName: "",
-    artisticName: "",
-    location: "",
-    rol: "",
-  });
   const [state, setState] = React.useReducer((s, a) => ({ ...s, ...a }), {
     fullName: "",
     artisticName: "",
@@ -63,7 +54,6 @@ const MultiStepForm = () => {
     setStep(step - 1);
     setProgress(progress - 12);
   };
-  const [formValues, handleInputChange] = useForm({});
   return (
     <>
       <progress value={progress} max="100" className="flex m-auto mt-10" />

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Button } from "../Button/Button";
-import { Input } from "../Input/Input";
 
 const Projects = (props) => {
   const [inputList, setInputList] = useState([{ projects: "" }]);
