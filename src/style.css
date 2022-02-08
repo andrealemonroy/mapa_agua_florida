@@ -14,7 +14,45 @@
 
 *{
   font-family: 'Montserrat';
+  /* overflow: hidden; */
 }
+
+body{
+  overflow: hidden;
+}
+@media screen and (max-width:600px) {
+  body{
+    overflow: scroll;
+  }
+}
+
+/* standard scroll styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #787878;
+  border-radius: 8px;
+}
+div::-webkit-scrollbar-track {
+  background: #f1f2f7;
+  border-radius: 8px;
+}
+
+div::-webkit-scrollbar-thumb {
+  background: #e4e5ed;
+  border-radius: 8px;
+}
+
+div::-webkit-scrollbar-thumb:hover {
+  background: #dbdde6;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
 /* 
 .form-control {
   padding: 12px 0;
