@@ -53,6 +53,31 @@ div::-webkit-scrollbar-thumb:hover {
   display: none;
 }
 
+.heightCard{
+  height: 350px !important;
+}
+
+.gradientBtn::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(
+    to bottom,
+    hsl(344, 100%, 50%),
+    hsl(31, 100%, 40%)
+  );
+  z-index: -1;
+  transition: opacity 0.5s linear;
+  opacity: 0;
+}
+.gradientBtn:hover::before {
+  opacity: 1;
+  cursor: pointer;
+}
+
 /* 
 .form-control {
   padding: 12px 0;

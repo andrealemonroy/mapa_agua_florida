@@ -10,7 +10,7 @@ export const MainBanner = () => {
      <h1 className="main-title text-center text-4xl">MUJERES MÚSICAS</h1>
      <div className="main-cta flex gap-4 justify-center mt-2">
          <Link to="/form">
-         <button className="main-button px-5 py-2 bg-primary text-white rounded-md" onClick="">
+         <button className="main-button px-5 py-2 bg-primary text-white rounded-md" >
             REGÍSTRATE
         </button>
         </Link>

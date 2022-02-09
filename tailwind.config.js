@@ -7,6 +7,8 @@ module.exports = {
       primary: "#C1BADC",
       secondary: "#F18338",
       danger: "#e3342f",
+      mmOrange: 'ea8644ff',
+      mmPurple: '#64599eff'
     }),
   },
   variants: {
