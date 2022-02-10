@@ -1,19 +1,18 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
 
 @font-face {
   font-family: "DxSitrus-Expanded";
   src: local("DxSitrus-Expanded"),
-   url("assets/OTF/DxSitrus-Expanded.otf") format("truetype");
+    url("assets/OTF/DxSitrus-Expanded.otf") format("truetype");
   font-weight: bold;
-  }
+}
 
-*{
-  font-family: 'Montserrat';
+* {
+  font-family: "Montserrat";
 }
 /* 
 .form-control {
@@ -270,40 +269,40 @@ Style the checkmark/indicator
   width: 45%;
 } */
 
-.container-checkbox{
-  border: 1px solid #C0C0C0;
+.container-checkbox {
+  border: 1px solid #c0c0c0;
   border-radius: 5px;
   height: 2em;
-  min-width: 200px
+  min-width: 200px;
 }
 
-.container-checkbox label input{
+.container-checkbox label input {
   position: absolute;
   display: none;
   color: #fff !important;
 }
 
-.container-checkbox label span{
+.container-checkbox label span {
   text-align: center;
   padding: 3px 0;
   display: block;
 }
 
-.checked input:checked + span{
-  background-color: #00AB9E;
+.checked input:checked + span {
+  background-color: #00ab9e;
   color: #fff;
 }
 
 .container-checkbox input:checked + span {
   color: #ffffff;
-  text-shadow: 0 0  6px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
 }
 
-.main-title{
-  font-family: 'DxSitrus-Expanded';
+.main-title {
+  font-family: "DxSitrus-Expanded";
 }
 
-.main-container{
+.main-container {
   display: flex;
   flex-direction: column;
 }
@@ -315,7 +314,85 @@ progress::-webkit-progress-bar {
 }
 
 progress::-webkit-progress-value {
-  background-color: #00AB9E !important;
+  background-color: #00ab9e !important;
   border-radius: 10px;
   justify-content: center;
+}
+/* map */
+.map {
+  height: calc(100vh - 64px);
+  width: 1000px;
+}
+
+.container {
+  position: relative;
+  height: calc(100vh - 80px);
+}
+
+@media screen and (max-width: 600px){
+  .container{
+    display: none;
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 64px);
+  background: rgba(0, 0, 0, 0);
+}
+
+.container:hover .overlay {
+  display: block;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+}
+
+.title {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 20%;
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  color: black;
+  z-index: 1;
+  transition: top 0.5s ease;
+}
+
+.container:hover .title {
+  top: 22%;
+}
+
+.button {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 50%;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.button a {
+  width: 200px;
+  padding: 12px 48px;
+  text-align: center;
+  color: white;
+  border: solid 2px white;
+  z-index: 1;
+}
+
+.container:hover .button {
+  opacity: 1;
 }

@@ -2,7 +2,7 @@ import React from "react";
 // import styled from 'styled-components';
 import MusiciansForm from "./components/form/index";
 import { Map } from "./components/map/index";
-import { MainPage } from "./components/mainPage/index";
+import MainPage from "./components/mainPage/index";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Example from "./components/nav/nav";
 import BandForm from "./components/form/bandForm";
