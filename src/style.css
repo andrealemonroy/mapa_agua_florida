@@ -11,9 +11,72 @@
   font-weight: bold;
 }
 
-* {
-  font-family: "Montserrat";
+*{
+  font-family: 'Montserrat';
+  /* overflow: hidden; */
 }
+
+body{
+  overflow: hidden;
+}
+@media screen and (max-width:600px) {
+  body{
+    overflow: scroll;
+  }
+}
+
+/* standard scroll styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #787878;
+  border-radius: 8px;
+}
+div::-webkit-scrollbar-track {
+  background: #f1f2f7;
+  border-radius: 8px;
+}
+
+div::-webkit-scrollbar-thumb {
+  background: #e4e5ed;
+  border-radius: 8px;
+}
+
+div::-webkit-scrollbar-thumb:hover {
+  background: #dbdde6;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+.heightCard{
+  height: 350px !important;
+}
+
+.gradientBtn::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(
+    to bottom,
+    hsl(344, 100%, 50%),
+    hsl(31, 100%, 40%)
+  );
+  z-index: -1;
+  transition: opacity 0.5s linear;
+  opacity: 0;
+}
+.gradientBtn:hover::before {
+  opacity: 1;
+  cursor: pointer;
+}
+
 /* 
 .form-control {
   padding: 12px 0;

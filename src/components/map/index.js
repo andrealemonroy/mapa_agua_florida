@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {Link} from "react-router-dom";
 import GoogleMapReact from "google-map-react";
 import styled from "styled-components";
 import axios from "axios";
@@ -7,11 +8,17 @@ const Wrapper = styled.main`
   display: flex;
   width: 100vw;
   height: calc(100vh - 64px);
+  @media (max-width: 600px) {
+    flex-direction: column
+  }
 `;
 const ContainerMap = styled.div`
   display: flex;
-  width: 800px;
+  width: 50%;
   height: calc(100vh - 64px);
+  @media (max-width: 600px) {
+    width: 100vw
+  }
 `;
 const DotMarker = styled.div`
   width: 25px;
@@ -35,13 +42,37 @@ const DotMarkerBands = styled.div`
   }
 `;
 const ContainerCard = styled.div`
-  width: calc(100vw - 800px);
+  width: 50%;
   height: 100%;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   margin: 10px;
   overflow: scroll;
+  @media (max-width: 600px) {
+    width: 100%
+  }
+`;
+
+const BtnCard = styled.div`
+
+  height: 45px;
+  margin: 10px;
+  background: rgb(100,89,158);
+  background: linear-gradient(90deg, rgba(100,89,158,1) 30%, rgba(234,134,68,1) 100%);
+  color: white;
+  transition: background 3s linear;
+
+  &:hover {
+    cursor: pointer;
+    background: rgb(234,134,68);
+    background: linear-gradient(90deg, rgba(234,134,68,1) 30%, rgba(100,89,158,1) 100%);
+   
+    
+  }
+  @media (max-width: 600px) {
+    width: 80%
+  }
 `;
 
 export const Map = () => {
@@ -49,6 +80,7 @@ export const Map = () => {
   const [bandsLocation, setBandsLocation] = useState([]);
   const [users, setUsers] = useState([]);
   const [bands, setBands] = useState([]);
+  const [selected, setSelected] = useState(false);
   axios.defaults.baseURL = `${process.env.API_AGUA_FLORIDA}`;
   const instance = axios.create({
     baseURL: "https://api.aguaflorida.pe/api",
@@ -73,8 +105,8 @@ export const Map = () => {
     <Wrapper>
       <ContainerMap>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyCPzQz0K77TBg7KX8mtBis5Q4sVE3JD2I8" }}
-          defaultZoom={5.5}
+          // bootstrapURLKeys={{ key: "AIzaSyCPzQz0K77TBg7KX8mtBis5Q4sVE3JD2I8" }}
+          defaultZoom={5.2}
           defaultCenter={[-10.046374, -77.042793]}
         >
           {usersLocation ? (
@@ -111,48 +143,68 @@ export const Map = () => {
         {users.length > 0 ? (
           users.map((user) => {
             return (
-              <div class="bg-white py-8 px-10 text-center rounded-md shadow-lg transform max-w-xs mx-auto my-2 border-2 w-72">
-                <h2 class="font-semibold text-2xl mb-6">{user.fullName}</h2>
+              <div
+                key={user._id}
+                className="bg-white py-8 px-10 text-center rounded-md shadow-lg transform mx-auto my-2 border-2 md:w-64 sm:w-full heightCard"
+              >
+                <h2 className="font-semibold text-2xl mb-6">{user.artisticName}</h2>
                 <img
-                  class="w-20 h-20 object-cover rounded-full mx-auto shadow-lg"
+                  className="w-20 h-20 object-cover rounded-full mx-auto shadow-lg"
                   src={user.photo ? user.photo : SINFOTO}
                   alt="User avatar"
                 />
-                <p class="capitalize text-xl mt-1">{user.genres}</p>
-                <span class="flex items-center border rounded-full w-24 pr-2 justify-center mx-auto mt-2 mb-12">
-                  <div class="bg-green-400 rounded-full w-2.5 h-2.5 block mr-2"></div>
-                  Nombre
+                <p className="capitalize text-xl mt-1">{user.role[0]}</p>
+                <span className="flex items-center border rounded-full w-34 pr-2 justify-center mx-auto mt-2 mb-12">
+                  <div className="bg-green-400 rounded-full w-2.5 h-2.5 block mr-2"></div>
+                  Persona/Solista
                 </span>
-                <button class="rounded-md bg-gradient-to-r from-blue-400 to-indigo-500 text-xl text-white pt-3 pb-4 px-8 inline">
-                  Redes
-                </button>
+               
+                  <Link to={`/musician?id=${user._id}`} >
+                    <BtnCard className="rounded-md pt-3 pb-4 px-8">
+                    Ver más
+                    </BtnCard>
+                  </Link>
+                  
+                 
               </div>
             );
           })
+        ) : selected ? (
+          <span>No Hay Personas/Solistas en esa localidad</span>
         ) : (
           <span></span>
         )}
+
         {bands.length > 0 ? (
           bands.map((band) => {
             return (
-              <div class="bg-white py-8 px-10 text-center rounded-md shadow-lg transform  max-w-xs mx-auto my-2 border-2 w-72">
-                <h2 class="font-semibold text-2xl mb-6">{band.bandsName}</h2>
+              <div
+                key={band._id}
+                className="bg-white py-8 px-10 text-center rounded-md shadow-lg transform mx-auto my-2 border-2 w-64 heightCard"
+              >
+                <h2 className="font-semibold text-2xl mb-6">
+                  {band.bandsName}
+                </h2>
                 <img
-                  class="w-20 h-20 object-cover rounded-full mx-auto shadow-lg"
+                  className="w-20 h-20 object-cover rounded-full mx-auto shadow-lg"
                   src={band.photo ? band.photo : SINFOTO}
                   alt="User avatar"
                 />
-                <p class="capitalize text-xl mt-1">{band.genres}</p>
-                <span class="flex items-center border rounded-full w-24 pr-2 justify-center mx-auto mt-2 mb-12">
-                  <div class="bg-green-400 rounded-full w-2.5 h-2.5 block mr-2"></div>
-                  Nombre
+                <p className="capitalize text-xl mt-1">{band.genres}</p>
+                <span className="flex items-center border rounded-full w-24 pr-2 justify-center mx-auto mt-2 mb-12">
+                  <div className="bg-green-400 rounded-full w-2.5 h-2.5 block mr-2"></div>
+                  Banda
                 </span>
-                <button class="rounded-md bg-gradient-to-r from-blue-400 to-indigo-500 text-xl text-white pt-3 pb-4 px-8 inline">
-                  Redes
-                </button>
+                <Link to={`/band?id=${band._id}`} >
+                    <BtnCard className="rounded-md pt-3 pb-4 px-8">
+                    Ver más
+                    </BtnCard>
+                  </Link>
               </div>
             );
           })
+        ) : selected ? (
+          <span>No Hay Bandas en esa localidad</span>
         ) : (
           <span></span>
         )}
