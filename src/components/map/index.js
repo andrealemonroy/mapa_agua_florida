@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import GoogleMapReact from "google-map-react";
 import styled from "styled-components";
 import axios from "axios";
@@ -9,7 +9,7 @@ const Wrapper = styled.main`
   width: 100vw;
   height: calc(100vh - 64px);
   @media (max-width: 600px) {
-    flex-direction: column
+    flex-direction: column;
   }
 `;
 const ContainerMap = styled.div`
@@ -17,7 +17,7 @@ const ContainerMap = styled.div`
   width: 50%;
   height: calc(100vh - 64px);
   @media (max-width: 600px) {
-    width: 100vw
+    width: 100vw;
   }
 `;
 const DotMarker = styled.div`
@@ -50,28 +50,33 @@ const ContainerCard = styled.div`
   margin: 10px;
   overflow: scroll;
   @media (max-width: 600px) {
-    width: 100%
+    width: 100%;
   }
 `;
 
 const BtnCard = styled.div`
-
   height: 45px;
   margin: 10px;
-  background: rgb(100,89,158);
-  background: linear-gradient(90deg, rgba(100,89,158,1) 30%, rgba(234,134,68,1) 100%);
+  background: rgb(100, 89, 158);
+  background: linear-gradient(
+    90deg,
+    rgba(100, 89, 158, 1) 30%,
+    rgba(234, 134, 68, 1) 100%
+  );
   color: white;
   transition: background 3s linear;
 
   &:hover {
     cursor: pointer;
-    background: rgb(234,134,68);
-    background: linear-gradient(90deg, rgba(234,134,68,1) 30%, rgba(100,89,158,1) 100%);
-   
-    
+    background: rgb(234, 134, 68);
+    background: linear-gradient(
+      90deg,
+      rgba(234, 134, 68, 1) 30%,
+      rgba(100, 89, 158, 1) 100%
+    );
   }
   @media (max-width: 600px) {
-    width: 80%
+    width: 80%;
   }
 `;
 
@@ -81,6 +86,8 @@ export const Map = () => {
   const [users, setUsers] = useState([]);
   const [bands, setBands] = useState([]);
   const [selected, setSelected] = useState(false);
+  const [showInfoWindow, setShowInfoWindow] = useState(false);
+  const [place, setPlace] = useState(null);
   axios.defaults.baseURL = `${process.env.API_AGUA_FLORIDA}`;
   const instance = axios.create({
     baseURL: "https://api.aguaflorida.pe/api",
@@ -101,6 +108,20 @@ export const Map = () => {
     });
   }, []);
 
+  const handleMouseOver = (place) => {
+    console.log("e");
+    setPlace(place);
+    setShowInfoWindow(true);
+  };
+
+  const handleMouseExit = (place) => {
+    console.log("i");
+    setTimeout(() => {
+      setShowInfoWindow(false);
+      setPlace(null);
+    }, 200);
+  };
+
   return (
     <Wrapper>
       <ContainerMap>
@@ -109,6 +130,19 @@ export const Map = () => {
           defaultZoom={5.2}
           defaultCenter={[-10.046374, -77.042793]}
         >
+          {showInfoWindow ? (
+            <div
+              key={place.value}
+              lat={place.coordinates?.lat}
+              lng={place.coordinates?.lng}
+              className="mb-10 w-24 bg-white popup"
+              onClick={() => getMusiciansByLatLng(place)}
+            >
+              <p className="text-md">Ver las solistas o bandas en este lugar</p>
+            </div>
+          ) : (
+            <span></span>
+          )}
           {usersLocation ? (
             usersLocation.map((place) => {
               return (
@@ -117,6 +151,8 @@ export const Map = () => {
                   lat={place.coordinates?.lat}
                   lng={place.coordinates?.lng}
                   onClick={() => getMusiciansByLatLng(place)}
+                  onMouseOver={() => handleMouseOver(place)}
+                  onMouseOut={() => handleMouseExit(place)}
                 ></DotMarker>
               );
             })
@@ -147,7 +183,9 @@ export const Map = () => {
                 key={user._id}
                 className="bg-white py-8 px-10 text-center rounded-md shadow-lg transform mx-auto my-2 border-2 md:w-64 sm:w-full heightCard"
               >
-                <h2 className="font-semibold text-2xl mb-6">{user.artisticName}</h2>
+                <h2 className="font-semibold text-2xl mb-6">
+                  {user.artisticName}
+                </h2>
                 <img
                   className="w-20 h-20 object-cover rounded-full mx-auto shadow-lg"
                   src={user.photo ? user.photo : SINFOTO}
@@ -158,14 +196,12 @@ export const Map = () => {
                   <div className="bg-green-400 rounded-full w-2.5 h-2.5 block mr-2"></div>
                   Persona/Solista
                 </span>
-               
-                  <Link to={`/musician?id=${user._id}`} >
-                    <BtnCard className="rounded-md pt-3 pb-4 px-8">
+
+                <Link to={`/musician?id=${user._id}`}>
+                  <BtnCard className="rounded-md pt-3 pb-4 px-8">
                     Ver más
-                    </BtnCard>
-                  </Link>
-                  
-                 
+                  </BtnCard>
+                </Link>
               </div>
             );
           })
@@ -195,11 +231,11 @@ export const Map = () => {
                   <div className="bg-green-400 rounded-full w-2.5 h-2.5 block mr-2"></div>
                   Banda
                 </span>
-                <Link to={`/band?id=${band._id}`} >
-                    <BtnCard className="rounded-md pt-3 pb-4 px-8">
+                <Link to={`/band?id=${band._id}`}>
+                  <BtnCard className="rounded-md pt-3 pb-4 px-8">
                     Ver más
-                    </BtnCard>
-                  </Link>
+                  </BtnCard>
+                </Link>
               </div>
             );
           })
