@@ -139,7 +139,9 @@ export const Map = () => {
               className="mb-10 w-24 bg-white popup"
               onClick={() => getMusiciansByLatLng(place)}
             >
-              <p className="text-md">Ver las solistas o bandas en este lugar</p>
+              <p className="text-md z-10">
+                Ver las solistas o bandas en este lugar
+              </p>
             </div>
           ) : (
             <span></span>
@@ -186,24 +188,36 @@ export const Map = () => {
               return (
                 <div
                   key={user._id}
-                  className="bg-white py-8 px-10 text-center rounded-md shadow-lg transform mx-auto my-2 border-2 border-primary md:w-64 sm:w-full heightCard"
+                  className="bg-white py-8 px-10 text-center rounded-lg shadow-lg transform mx-auto my-2 border-2 border-primary md:w-64 sm:w-full heightCard"
                 >
-                  <h2 className="font-semibold text-2xl mb-6">
+                  <h2 className="font-semibold text-2xl mb-2">
                     {user.artisticName}
                   </h2>
+                  <p className="capitalize text-xs mt-1 mb-2">
+                    {" "}
+                    Persona/Solista
+                  </p>
                   <img
-                    className="w-20 h-20 object-cover rounded-full mx-auto shadow-lg"
+                    className="w-20 h-20 object-cover rounded-full mx-auto shadow-lg "
                     src={user.photo ? user.photo : LogoMapa}
                     alt="User avatar"
                   />
-                  <p className="capitalize text-xl mt-1">{user.role[0]}</p>
-                  <span className="flex items-center border rounded-full w-34 pr-2 justify-center mx-auto mt-2 mb-12">
-                    <div className="bg-green-400 rounded-full w-2.5 h-2.5 block mr-2"></div>
-                    Persona/Solista
+
+                  <span className="flex items-center border border-mmGray rounded-full w-34 pr-2 justify-center mx-auto mt-3 ">
+                    <div className="bg-mmOrange rounded-full w-2.5 h-2.5 block mr-2"></div>
+                    {`${user.role[0]} `}
                   </span>
 
-                  <Link to={`/musician?id=${user._id}`}>
-                    <BtnCard className="rounded-md pt-3 pb-4 px-8">
+                  <p className="capitalize text-xs mt-1 mb-12 font-bold">
+                    {user.location.value}
+                  </p>
+
+                  <Link
+                    to={`/musician?id=${user._id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <BtnCard className="rounded-full pt-3 pb-4 px-8">
                       Ver más
                     </BtnCard>
                   </Link>
@@ -219,25 +233,62 @@ export const Map = () => {
           {bands.length > 0 ? (
             bands.map((band) => {
               return (
+                // <div
+                //   key={band._id}
+                //   className="bg-white py-8 px-10 text-center rounded-md shadow-lg transform mx-auto my-2 border-2 border-primary w-64 heightCard"
+                // >
+                //   <h2 className="font-semibold text-2xl mb-6">
+                //     {band.bandsName}
+                //   </h2>
+                //   <img
+                //     className="w-20 h-20 object-cover rounded-full mx-auto shadow-lg"
+                //     src={band.photo ? band.photo : LogoMapa}
+                //     alt="User avatar"
+                //   />
+                //   <p className="capitalize text-xl mt-1">{band.genres}</p>
+                //   <span className="flex items-center border rounded-full w-24 pr-2 justify-center mx-auto mt-2 mb-12">
+                //     <div className="bg-green-400 rounded-full w-2.5 h-2.5 block mr-2"></div>
+                //     Banda
+                //   </span>
+                //   <Link to={`/band?id=${band._id}`}>
+                //     <BtnCard className="rounded-md pt-3 pb-4 px-8">
+                //       Ver más
+                //     </BtnCard>
+                //   </Link>
+                // </div>
+
                 <div
                   key={band._id}
-                  className="bg-white py-8 px-10 text-center rounded-md shadow-lg transform mx-auto my-2 border-2 border-primary w-64 heightCard"
+                  className="bg-white py-8 px-10 text-center rounded-lg shadow-lg transform mx-auto my-2 border-2 border-primary md:w-64 sm:w-full heightCard"
                 >
-                  <h2 className="font-semibold text-2xl mb-6">
+                  <h2 className="font-semibold text-2xl mb-2">
                     {band.bandsName}
                   </h2>
+                  <p className="capitalize text-xs mt-1 mb-2">
+                    {" "}
+                    Banda
+                  </p>
                   <img
-                    className="w-20 h-20 object-cover rounded-full mx-auto shadow-lg"
+                    className="w-20 h-20 object-cover rounded-full mx-auto shadow-lg "
                     src={band.photo ? band.photo : LogoMapa}
                     alt="User avatar"
                   />
-                  <p className="capitalize text-xl mt-1">{band.genres}</p>
-                  <span className="flex items-center border rounded-full w-24 pr-2 justify-center mx-auto mt-2 mb-12">
-                    <div className="bg-green-400 rounded-full w-2.5 h-2.5 block mr-2"></div>
-                    Banda
+
+                  <span className="flex items-center border border-mmGray rounded-full w-34 pr-2 justify-center mx-auto mt-3 ">
+                    <div className="bg-mmOrange rounded-full w-2.5 h-2.5 block mr-2"></div>
+                    {`${band.genres} `}
                   </span>
-                  <Link to={`/band?id=${band._id}`}>
-                    <BtnCard className="rounded-md pt-3 pb-4 px-8">
+
+                  <p className="capitalize text-xs mt-1 mb-12 font-bold">
+                    {band.location.value}
+                  </p>
+
+                  <Link
+                    to={`/band?id=${band._id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <BtnCard className="rounded-full pt-3 pb-4 px-8">
                       Ver más
                     </BtnCard>
                   </Link>
