@@ -10,6 +10,12 @@ module.exports = {
       mmOrange: 'ea8644ff',
       mmPurple: '#64599eff'
     }),
+    colors:{
+      primary: "#C1BADC",
+      mmPurple: '#64599eff',
+      white: "#fff",
+      black: "#000"
+    }
   },
   variants: {
     extend: {},

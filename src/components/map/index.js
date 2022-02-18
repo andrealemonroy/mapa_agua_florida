@@ -4,6 +4,7 @@ import GoogleMapReact from "google-map-react";
 import styled from "styled-components";
 import axios from "axios";
 import SINFOTO from "../../assets/SVG/SINFOTO.svg";
+import MapPresentation from "../MapPresentation";
 const Wrapper = styled.main`
   display: flex;
   width: 100vw;
@@ -175,10 +176,10 @@ export const Map = () => {
           )}
         </GoogleMapReact>
       </ContainerMap>
-      <ContainerCard>
-        {users.length > 0 ? (
-          users.map((user) => {
-            return (
+      {users.length > 0 ? (
+        users.map((user) => {
+          return (
+            <ContainerCard>
               <div
                 key={user._id}
                 className="bg-white py-8 px-10 text-center rounded-md shadow-lg transform mx-auto my-2 border-2 md:w-64 sm:w-full heightCard"
@@ -203,17 +204,19 @@ export const Map = () => {
                   </BtnCard>
                 </Link>
               </div>
-            );
-          })
-        ) : selected ? (
-          <span>No Hay Personas/Solistas en esa localidad</span>
-        ) : (
-          <span></span>
-        )}
+            </ContainerCard>
+          );
+        })
+      ) : selected ? (
+        <span>No Hay Personas/Solistas en esa localidad</span>
+      ) : (
+        <span></span>
+      )}
 
-        {bands.length > 0 ? (
-          bands.map((band) => {
-            return (
+      {bands.length > 0 ? (
+        bands.map((band) => {
+          return (
+            <ContainerCard>
               <div
                 key={band._id}
                 className="bg-white py-8 px-10 text-center rounded-md shadow-lg transform mx-auto my-2 border-2 w-64 heightCard"
@@ -237,14 +240,19 @@ export const Map = () => {
                   </BtnCard>
                 </Link>
               </div>
-            );
-          })
-        ) : selected ? (
-          <span>No Hay Bandas en esa localidad</span>
-        ) : (
-          <span></span>
-        )}
-      </ContainerCard>
+            </ContainerCard>
+          );
+        })
+      ) : selected ? (
+        <span>No Hay Bandas en esa localidad</span>
+      ) : (
+        <span></span>
+      )}
+      {bands.length === 0 || users.length === 0 ? (
+        <MapPresentation />
+      ) : (
+        <span></span>
+      )}
     </Wrapper>
   );
 };
