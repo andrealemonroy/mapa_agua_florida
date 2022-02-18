@@ -16,11 +16,13 @@ export default function Nav(props) {
       { name: "EL FESTIVAL", to: "/map", current: false },
       { name: "REGÍSTRATE", to: "/form", current: false },
     ];
-  } else {
+  } else if(props.route === "form"){
     navigation = [
       { name: "EL FESTIVAL", to: "/map", current: false },
       { name: "VER MAPA", to: "/map", current: false },
     ];
+  } else {
+    navigation = []
   }
 
   return (
@@ -40,7 +42,12 @@ export default function Nav(props) {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex-1 flex sm:items-stretch justify-between">
+              <div className={classNames(
+                    props.route === "personalForm" || props.route === "bandForm"
+                      ? "justify-center"
+                      : "tflex-1 flex sm:items-stretch justify-between",
+                    "flex-1 flex sm:items-stretch "
+                  )}>
                 <div className="flex-shrink-0 flex items-center">
                   <Link to="/">
                     <img
@@ -77,7 +84,8 @@ export default function Nav(props) {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map((item) => (
+              
+              {navigation.length > 0 ? navigation.map((item) => (
                 <Link
                   key={item.name}
                   to={item.to}
@@ -91,7 +99,7 @@ export default function Nav(props) {
                 >
                   {item.name}
                 </Link>
-              ))}
+              )): <></>}
             </div>
           </Disclosure.Panel>
         </>

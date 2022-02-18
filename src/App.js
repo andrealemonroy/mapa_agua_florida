@@ -16,17 +16,19 @@ const App = () => {
     <Router>
       <Switch>
         <Route path="/form">
-          <Nav route="form"/>
+          <Nav route="form" />
           <MusiciansForm />
         </Route>
         <Route path="/map">
-          <Nav route="map"/>
+          <Nav route="map" />
           <Map />
         </Route>
         <Route path="/personalForm">
+          <Nav route="personalForm" />
           <MultiStepForm />
         </Route>
         <Route path="/bandForm">
+          <Nav route="bandForm" />
           <BandForm />
         </Route>
         <Route path="/termsAndConditions">
