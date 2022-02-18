@@ -15,7 +15,7 @@ const MainBanner = () => {
       <div className="mt-10">
         <img src={MujeresMusicas} className="mx-40" />
       </div>
-      <div className="flex justify-around	px-40 mt-10">
+      <div className="flex flex-col mt-10 mx-auto sm:flex-row sm:px-40 sm:justify-around gap-4">
         <Link to="/bandForm">
           <div className="bg-secondary w-48 text-white py-2 font-franklin font-black text-lg">
             EL FESTIVAL
