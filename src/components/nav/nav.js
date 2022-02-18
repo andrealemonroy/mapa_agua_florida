@@ -4,17 +4,25 @@ import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/SVG/LOGO_MM.svg";
-const navigation = [
-  { name: "Inicio", to: "/", current: true },
-  { name: "Mapa", to: "/map", current: false },
-  { name: "Formulario", to: "/form", current: false },
-];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-export default function Example(props) {
+export default function Nav(props) {
   let location = useLocation();
+  let navigation = [];
+  if (props.route === "map") {
+    navigation = [
+      { name: "EL FESTIVAL", to: "/map", current: false },
+      { name: "REGÍSTRATE", to: "/form", current: false },
+    ];
+  } else {
+    navigation = [
+      { name: "EL FESTIVAL", to: "/map", current: false },
+      { name: "VER MAPA", to: "/map", current: false },
+    ];
+  }
+
   return (
     <Disclosure as="nav" className="bg-primary">
       {({ open }) => (
@@ -32,18 +40,20 @@ export default function Example(props) {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex-1 flex items-center justify-center sm:items-stretch">
+              <div className="flex-1 flex sm:items-stretch justify-between">
                 <div className="flex-shrink-0 flex items-center">
-                  <img
-                    className="block lg:hidden h-8 w-auto"
-                    src={logo}
-                    alt="Workflow"
-                  />
-                  <img
-                    className="hidden lg:block h-8 w-auto"
-                    src={logo}
-                    alt="Workflow"
-                  />
+                  <Link to="/">
+                    <img
+                      className="block lg:hidden h-8 w-auto"
+                      src={logo}
+                      alt="Workflow"
+                    />
+                    <img
+                      className="hidden lg:block h-8 w-auto"
+                      src={logo}
+                      alt="Workflow"
+                    />
+                  </Link>
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
@@ -51,15 +61,12 @@ export default function Example(props) {
                       <Link
                         key={item.name}
                         to={item.to}
-                        className={classNames(
-                          item.to === location.pathname
-                            ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                          "px-3 py-2 rounded-md text-sm font-medium"
-                        )}
+                        className="rounded-md text-sm font-medium"
                         aria-current={item.current ? "page" : undefined}
                       >
-                        {item.name}
+                        <div className="bg-mmPurple px-6 py-2 text-white font-black font-franklin text-lg">
+                          {item.name}
+                        </div>
                       </Link>
                     ))}
                   </div>

@@ -11,6 +11,13 @@
   font-weight: bold;
 }
 
+@font-face {
+  font-family: "Franklin";
+  src: local("Franklin"),
+    url("assets/OTF/Franklin-Regular.otf") format("truetype");
+  font-weight: bold;
+}
+
 *{
   font-family: 'Montserrat';
   /* overflow: hidden; */
@@ -485,4 +492,8 @@ progress::-webkit-progress-value {
   border-radius: 9px;
   text-align: center;
   cursor: pointer;
+}
+
+.font-franklin{
+  font-family: 'Franklin';
 }
