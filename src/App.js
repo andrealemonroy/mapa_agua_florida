@@ -35,6 +35,7 @@ const App = () => {
           <TermsAndConditions />
         </Route>
         <Route path="/musician">
+          <Nav route="musician" />
           <MusicianInfo />
         </Route>
         <Route path="/band">

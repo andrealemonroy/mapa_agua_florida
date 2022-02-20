@@ -16,7 +16,7 @@ export default function Nav(props) {
       { name: "EL FESTIVAL", to: "/map", current: false },
       { name: "REGÍSTRATE", to: "/form", current: false },
     ];
-  } else if(props.route === "form"){
+  } else if(props.route === "form" || props.route === "musician"){
     navigation = [
       { name: "EL FESTIVAL", to: "/map", current: false },
       { name: "VER MAPA", to: "/map", current: false },
@@ -45,7 +45,7 @@ export default function Nav(props) {
               <div className={classNames(
                     props.route === "personalForm" || props.route === "bandForm"
                       ? "justify-center"
-                      : "tflex-1 flex sm:items-stretch justify-between",
+                      : "justify-between",
                     "flex-1 flex sm:items-stretch "
                   )}>
                 <div className="flex-shrink-0 flex items-center">
