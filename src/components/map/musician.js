@@ -99,23 +99,23 @@ function MusicianInfo() {
                   <div className="flex justify-evenly mt-5">
                     {userInfo.socialNetworks?.map(
                       (socialNetwork) => {
-                        if (socialNetwork[0].facebook) {
+                        if (socialNetwork[0]?.facebook) {
                           return (
                             <a target="_blank" href={socialNetwork[0].facebook}>
                               <img src={logoFacebook} />
                             </a>
                           );
-                        } else if (socialNetwork[0].instagram) {
+                        } else if (socialNetwork[0]?.instagram) {
                           return (
                           <a target="_blank" href={socialNetwork[0].instagram}>
                             <img src={logoInstagram} />
                           </a>)
-                        } else if (socialNetwork[0].spotify) {
+                        } else if (socialNetwork[0]?.spotify) {
                           return (
                           <a target="_blank" href={socialNetwork[0].spotify}>
                             <img src={logoSpotify} />
                           </a>)
-                        } else {
+                        } else if (socialNetwork[0]?.youtube) {
                           return (
                           <a target="_blank" href={socialNetwork[0].youtube}>
                             <img src={logoYoutube} />
