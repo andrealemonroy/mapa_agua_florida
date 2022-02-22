@@ -10,7 +10,7 @@ const Wrapper = styled.main`
   width: 100vw;
   height: calc(100vh - 64px);
   @media (max-width: 600px) {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 `;
 const ContainerMap = styled.div`
