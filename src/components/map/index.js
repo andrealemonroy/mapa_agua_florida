@@ -5,14 +5,8 @@ import styled from "styled-components";
 import axios from "axios";
 import LogoMapa from "../../assets/SVG/logoMapa.svg";
 import MapPresentation from "../MapPresentation";
-const Wrapper = styled.main`
-  display: flex;
-  width: 100vw;
-  height: calc(100vh - 64px);
-  @media (max-width: 600px) {
-    flex-direction: column-reverse;
-  }
-`;
+
+
 const ContainerMap = styled.div`
   display: flex;
   width: 50%;
@@ -52,6 +46,7 @@ const ContainerCard = styled.div`
   overflow: scroll;
   @media (max-width: 600px) {
     width: 100%;
+    height: 70vh;
   }
 `;
 
@@ -82,6 +77,17 @@ const BtnCard = styled.div`
 `;
 
 export const Map = () => {
+  const [column, setColumn] = useState(true);
+const Wrapper = styled.main`
+  display: flex;
+  width: 100vw;
+  height: calc(100vh - 64px);
+  @media (max-width: 600px) {
+    flex-direction: ${column ? "column-reverse" : "column"};
+    height: auto;
+  }
+`;
+
   const [usersLocation, setUsersLocation] = useState([]);
   const [bandsLocation, setBandsLocation] = useState([]);
   const [users, setUsers] = useState([]);
@@ -97,6 +103,7 @@ export const Map = () => {
 
   const getMusiciansByLatLng = async (place) => {
     instance.post(`/total/byLocation`, place).then((res) => {
+      setColumn(false);
       setUsers(res.data.data[0]);
       setBands(res.data.data[1]);
     });
