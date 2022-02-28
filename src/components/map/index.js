@@ -118,16 +118,16 @@ const Wrapper = styled.main`
 
   const handleMouseOver = (place) => {
     console.log("e");
-    setPlace(place);
-    setShowInfoWindow(true);
+    // setPlace(place);
+    // setShowInfoWindow(true);
   };
 
   const handleMouseExit = (place) => {
     console.log("i");
-    setTimeout(() => {
-      setShowInfoWindow(false);
-      setPlace(null);
-    }, 200);
+    // setTimeout(() => {
+      // setShowInfoWindow(false);
+    //   setPlace(null);
+    // }, 200);
   };
 
   return (
