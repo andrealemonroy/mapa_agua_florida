@@ -16,7 +16,7 @@ const MainBanner = () => {
         <img src={MujeresMusicas} className="mx-40" />
       </div>
       <div className="flex flex-col mt-10 mx-auto sm:flex-row sm:px-40 sm:justify-around gap-4">
-        <Link to="/bandForm">
+        <Link to={{ pathname: "https://aguaflorida.pe/mujeresmusicas" }} target="_blank">
           <div className="bg-secondary w-48 text-white py-2 font-franklin font-black text-lg">
             EL FESTIVAL
           </div>
@@ -36,8 +36,18 @@ const MainBanner = () => {
         <img src={LogoMINCUL} className="w-48" />
       </div>
       <div className="flex space-between mx-auto align-middle gap-4 mt-10">
-        <a href=""><img src={Facebook} className="rounded-full w-12 mr-20 shadow-lg shadow-black"/></a>
-        <a href=""><img src={Instagram} className="rounded-full w-12 ml-20 shadow-lg shadow-black" /></a>
+        <a href="">
+          <img
+            src={Facebook}
+            className="rounded-full w-12 mr-20 shadow-lg shadow-black"
+          />
+        </a>
+        <a href="">
+          <img
+            src={Instagram}
+            className="rounded-full w-12 ml-20 shadow-lg shadow-black"
+          />
+        </a>
       </div>
     </div>
   );

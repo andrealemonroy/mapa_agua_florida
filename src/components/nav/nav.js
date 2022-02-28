@@ -13,12 +13,12 @@ export default function Nav(props) {
   let navigation = [];
   if (props.route === "map") {
     navigation = [
-      { name: "EL FESTIVAL", to: "/map", current: false },
+      { name: "EL FESTIVAL", pathname: "https://aguaflorida.pe/mujeresmusicas", current: false, target:'_blank' },
       { name: "REGÍSTRATE", to: "/form", current: false },
     ];
   } else if(props.route === "form" || props.route === "musician"){
     navigation = [
-      { name: "EL FESTIVAL", to: "/map", current: false },
+      { name: "EL FESTIVAL", pathname: "https://aguaflorida.pe/mujeresmusicas", current: false, target:'_blank'  },
       { name: "VER MAPA", to: "/map", current: false },
     ];
   } else {
@@ -57,9 +57,10 @@ export default function Nav(props) {
                     {navigation.map((item) => (
                       <Link
                         key={item.name}
-                        to={item.to}
+                        to={item.pathname ? {pathname: item.pathname} : item.to}
                         className="rounded-md text-sm font-medium"
                         aria-current={item.current ? "page" : undefined}
+                        target={item.target}
                       >
                         <div className="bg-mmPurple px-6 py-2 text-white font-black font-franklin text-lg">
                           {item.name}
