@@ -4,7 +4,7 @@ const MusiciansForm = () => {
   return (
     <div className="grid justify-center align-middle mt-20">
       <h2 className="text-center text-2xl font-bold">
-        Te quieres registar como:
+        Te quieres registrar como:
       </h2>
       <div className="grid sm:flex gap-8 justify-center mt-5">
         <Link
