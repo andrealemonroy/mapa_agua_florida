@@ -13,7 +13,7 @@ const MainBanner = () => {
         <img src={Logo} />
       </div>
       <div className="mt-10">
-        <img src={MujeresMusicas} className="mx-40" />
+        <img src={MujeresMusicas} className="sm:mx-40 mx-5" />
       </div>
       <div className="flex flex-col mt-10 mx-auto sm:flex-row sm:px-40 sm:justify-around gap-4">
         <Link to={{ pathname: "https://aguaflorida.pe/mujeresmusicas" }} target="_blank">

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Location from "../Location/Location";
 import PersonalName from "../Steps/PersonalName";
-import { useForm } from "../../hooks/useForm";
 import Rol from "../Steps/Rol";
 import Projects from "../Steps/Projects";
 import SocialNetworks from "../Steps/SocialNetworks";
@@ -43,7 +42,7 @@ const MultiStepForm = () => {
         }, 3000);
       } catch (err) {
         console.log(err);
-      }
+      } 
     } else {
       console.log(step);
       setStep(step + 1);
