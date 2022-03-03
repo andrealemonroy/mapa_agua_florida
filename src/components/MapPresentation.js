@@ -9,11 +9,11 @@ const MapPresentation = () => {
       <div className="mx-auto">
         <img src={LogoMapa} className="sm:w-24 w-20" />
       </div>
-      <div className="mx-auto text-center text-mmPurple text-6xl">
+      <div className="mx-auto text-center text-mmPurple sm:text-6xl text-2xl">
         <h2 className="font-light">¡Bienvenida!</h2>
       </div>
       <div className="mx-auto">
-        <p className="text-center text-mmPurple text-xl">
+        <p className="text-center text-mmPurple sm:text-xl text-md">
           En este mapa podrás ubicar a <br /> diversas{" "}
           <b className="font-black">artistas mujeres</b> peruanas
           <br /> y también <b className="font-black">unirte</b> a ellas.
