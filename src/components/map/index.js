@@ -11,8 +11,9 @@ const ContainerMap = styled.div`
   display: flex;
   width: 50%;
   height: calc(100vh - 64px);
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     width: 100vw;
+    height: 100vh;
   }
 `;
 const DotMarker = styled.div`

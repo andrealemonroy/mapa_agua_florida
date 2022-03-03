@@ -139,6 +139,13 @@ progress::-webkit-progress-value {
   width: 1000px;
 }
 
+@media screen and (max-width: 700px){
+  .height-personalized{
+    height: calc(100vh - 64px);
+  }
+}
+
+
 .container {
   position: relative;
   height: calc(100vh - 80px);

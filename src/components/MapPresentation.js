@@ -1,10 +1,11 @@
 import React from "react";
 import LogoMapa from "../assets/SVG/logoMapa.svg";
+import DownArrow from "../assets/SVG/down_arrow.svg";
 import { Link } from "react-router-dom";
 import LogoMINCUL from "../assets/SVG/LogoMINCUL.svg";
 const MapPresentation = () => {
   return (
-    <div className="flex flex-col justify-center align-middle mx-auto">
+    <div className="flex flex-col justify-center align-middle mx-auto height-personalized">
       <div className="mx-auto">
         <img src={LogoMapa} className="w-24" />
       </div>
@@ -21,7 +22,7 @@ const MapPresentation = () => {
       <div className="mx-auto mt-5">
         <Link to="/form">
           <div className="bg-mmPurple px-6 py-2 text-white font-black font-franklin text-lg">
-              REGÍSTRATE
+            REGÍSTRATE
           </div>
         </Link>
       </div>
@@ -30,6 +31,9 @@ const MapPresentation = () => {
       </div>
       <div className="mx-auto mt-10">
         <img src={LogoMapa} className="w-24" />
+      </div>
+      <div className="mx-auto mt-2">
+        <img src={DownArrow} className="w-4" />
       </div>
     </div>
   );
