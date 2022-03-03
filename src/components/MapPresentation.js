@@ -7,7 +7,7 @@ const MapPresentation = () => {
   return (
     <div className="flex flex-col justify-center align-middle mx-auto height-personalized">
       <div className="mx-auto">
-        <img src={LogoMapa} className="w-24" />
+        <img src={LogoMapa} className="sm:w-24 w-20" />
       </div>
       <div className="mx-auto text-center text-mmPurple text-6xl">
         <h2 className="font-light">¡Bienvenida!</h2>
@@ -26,11 +26,11 @@ const MapPresentation = () => {
           </div>
         </Link>
       </div>
-      <div className="mx-auto mt-10">
+      <div className="mx-auto sm:mt-10 mt-5">
         <img src={LogoMINCUL} className="w-48" />
       </div>
-      <div className="mx-auto mt-10">
-        <img src={LogoMapa} className="w-24" />
+      <div className="mx-auto sm:mt-10 mt-5">
+        <img src={LogoMapa} className="sm:w-24 w-20" />
       </div>
       <div className="mx-auto mt-2 sm:hidden">
         <img src={DownArrow} className="w-4" />
