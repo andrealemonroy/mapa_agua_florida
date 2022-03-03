@@ -39,7 +39,7 @@ function Band() {
   <>
     <div className="flex flex-col align-middle h-full">
       <div className="w-screen h-full my-5">
-        <h2 className="text-center text-2xl font-bold">
+        <h2 className="text-center text-xl font-bold">
          {bandInfo.bandsName}
         </h2>
       </div>

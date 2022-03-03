@@ -32,7 +32,7 @@ const MapPresentation = () => {
       <div className="mx-auto mt-10">
         <img src={LogoMapa} className="w-24" />
       </div>
-      <div className="mx-auto mt-2">
+      <div className="mx-auto mt-2 sm:hidden">
         <img src={DownArrow} className="w-4" />
       </div>
     </div>
