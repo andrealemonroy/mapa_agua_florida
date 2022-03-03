@@ -21,13 +21,13 @@ const MapPresentation = () => {
       </div>
       <div className="mx-auto mt-5">
         <Link to="/form">
-          <div className="bg-mmPurple px-6 py-2 text-white font-black font-franklin text-lg">
+          <div className="bg-mmPurple sm:px-6 sm:py-2 text-white font-black font-franklin sm:text-lg text-md px-3 py-1">
             REGÍSTRATE
           </div>
         </Link>
       </div>
       <div className="mx-auto sm:mt-10 mt-5">
-        <img src={LogoMINCUL} className="w-48" />
+        <img src={LogoMINCUL} className="sm:w-48 w-40" />
       </div>
       <div className="mx-auto sm:mt-10 mt-5">
         <img src={LogoMapa} className="sm:w-24 w-20" />
