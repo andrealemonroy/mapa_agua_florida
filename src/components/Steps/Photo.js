@@ -94,7 +94,6 @@ const Photo = (props) => {
                   accept=".jpg, .jpeg, .png"
                 />
               </label>
-              <p className="pl-1">o arrastrálo aquí</p>
             </div>
             <p className="text-xs text-gray-500">PNG, JPG, JPEG max 1MB</p>
           </div>

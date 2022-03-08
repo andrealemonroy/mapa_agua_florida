@@ -198,7 +198,7 @@ const Wrapper = styled.main`
                   key={user._id}
                   className="bg-white py-8 px-10 text-center rounded-lg shadow-lg transform mx-auto my-2 border-2 border-primary md:w-64 sm:w-full heightCard"
                 >
-                  <h2 className="font-semibold text-xl mb-2">
+                  <h2 className="font-semibold text-lg mb-2">
                     {user.artisticName}
                   </h2>
                   <p className="capitalize text-xs mt-1 mb-2">
