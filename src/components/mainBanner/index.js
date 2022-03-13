@@ -36,13 +36,13 @@ const MainBanner = () => {
         <img src={LogoMINCUL} className="w-48" />
       </div>
       <div className="flex space-between mx-auto align-middle gap-4 mt-10">
-        <a href="">
+        <a href="https://www.facebook.com/festivalmujeresmusicas">
           <img
             src={Facebook}
             className="rounded-full w-12 mr-20 shadow-lg shadow-black"
           />
         </a>
-        <a href="">
+        <a href="https://www.instagram.com/festivalmujeresmusicas/">
           <img
             src={Instagram}
             className="rounded-full w-12 ml-20 shadow-lg shadow-black"
