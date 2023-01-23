@@ -98,10 +98,9 @@ const Wrapper = styled.main`
   const [place, setPlace] = useState(null);
   axios.defaults.baseURL = `${process.env.API_AGUA_FLORIDA}`;
   const instance = axios.create({
-    baseURL: "https://api.aguaflorida.pe/api",
+    baseURL: "https://api-agua-florida.vercel.app/api",
     headers: { "Content-Type": "application/json" },
   });
-
   const getMusiciansByLatLng = async (place) => {
     instance.post(`/total/byLocation`, place).then((res) => {
       setColumn(false);
