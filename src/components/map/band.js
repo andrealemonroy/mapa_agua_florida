@@ -10,7 +10,7 @@ import logoYoutube from "../../assets/SVG/logoYoutube.svg";
 function Band() {
   axios.defaults.baseURL = `${process.env.API_AGUA_FLORIDA}`;
   const instance = axios.create({
-    baseURL: "https://api.aguaflorida.pe/api",
+    baseURL: "https://api-agua-florida.vercel.app/api",
     headers: { "Content-Type": "application/json" },
   });
 
