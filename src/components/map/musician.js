@@ -9,7 +9,7 @@ import logoYoutube from "../../assets/SVG/logoYoutube.svg";
 function MusicianInfo() {
   axios.defaults.baseURL = `${process.env.API_AGUA_FLORIDA}`;
   const instance = axios.create({
-    baseURL: "https://api-agua-florida.vercel.app/api",
+    baseURL: "https://api-agua-florida-9nqoy1d9b-andrealemonroy.vercel.app/api",
     headers: { "Content-Type": "application/json" },
   });
 
@@ -33,7 +33,7 @@ function MusicianInfo() {
 
   return (
     <div>
-      {userInfo !== {} ? (
+      {userInfo != {} ? (
         <>
           <div className="flex flex-col align-middle h-full">
             <div className="w-screen h-full my-5">
